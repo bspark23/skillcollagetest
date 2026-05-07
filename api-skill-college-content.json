@@ -1,0 +1,222 @@
+{
+  "systemSettings": {
+    "contact": {
+      "email": "skillcollegealtd@gmail.com",
+      "phones": ["+2347030749599"],
+      "addresses": [
+        {
+          "address": "No 12 Aisha Plaza, Off Maishindam Cambua Road, Maiduguri, Borno State, Nigeria"
+        }
+      ]
+    }
+  },
+  "siteContent": {
+    "home": {
+      "section1": {
+        "title": "From Learning to Earning",
+        "body": "Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services that empower individuals, strengthen MSMEs, and support sustainable development goals.",
+        "buttons": [
+          {
+            "title": "Explore Our Services",
+            "href": "/services"
+          },
+          {
+            "title": "Contact Us",
+            "href": "/contact"
+          }
+        ]
+      },
+      "section2": {
+        "overline": "What We Offer",
+        "title": "Our Core Services",
+        "body": "Comprehensive programs designed to equip individuals with the skills and knowledge needed to thrive.",
+        "items": [
+          {
+            "title": "Skills Training Programs",
+            "body": "Hands-on vocational and technical training programs designed to equip youth with market-ready skills."
+          },
+          {
+            "title": "Entrepreneurship Development",
+            "body": "Comprehensive business development programs that transform ideas into sustainable enterprises."
+          },
+          {
+            "title": "Research and Innovation",
+            "body": "Cutting-edge research services supporting evidence-based decision making and innovation."
+          },
+          {
+            "title": "Mentorship and Coaching",
+            "body": "One-on-one mentorship connecting learners with experienced industry professionals."
+          },
+          {
+            "title": "Certification Programs",
+            "body": "Internationally recognized certification courses that boost employability and career growth."
+          },
+          {
+            "title": "Community Development",
+            "body": "Grassroots programs empowering communities through education and enterprise development."
+          }
+        ]
+      },
+      "section3": {
+        "title": "Why Choose Skill College",
+        "body": "We combine academic excellence with practical industry experience to deliver transformative education.",
+        "items": [
+          {
+            "title": "Business-Ready Solutions",
+            "body": "Our programs are designed in partnership with industry leaders to ensure graduates are job and business ready from day one."
+          },
+          {
+            "title": "Experienced Faculty",
+            "body": "Learn from seasoned professionals and academics with decades of real-world experience across multiple sectors."
+          },
+          {
+            "title": "Cutting-Edge Curriculum",
+            "body": "Our curriculum is regularly updated to reflect current market demands, emerging technologies, and global best practices."
+          }
+        ]
+      },
+      "section4": {
+        "title": "Our Partners",
+        "body": "We collaborate with diverse organizations to amplify our impact.",
+        "items": [
+          {
+            "title": "UN Agencies & International Organizations",
+            "body": "Collaboration with IOM, UNDP, UNHCR, and other UN agencies on development programs."
+          },
+          {
+            "title": "NGOs & Government Agencies",
+            "body": "Strategic partnerships with local and international NGOs for project implementation and government bodies on capacity building and development initiatives."
+          },
+          {
+            "title": "Private Sector & Corporates",
+            "body": "Partnership with businesses for skills development and economic empowerment programs."
+          }
+        ]
+      },
+      "section5": {
+        "title": "Our Research Services",
+        "body": "Data-driven insights and rigorous evaluations to measure impact and inform strategic decisions.",
+        "items": [
+          {
+            "title": "Rigorous & Reliable",
+            "body": "International standards and proven methodologies."
+          },
+          {
+            "title": "Context-Specific",
+            "body": "Tailored approaches for local realities."
+          },
+          {
+            "title": "Actionable Insights",
+            "body": "Practical recommendations you can implement."
+          },
+          {
+            "title": "Statistical analysis and reporting",
+            "body": "Remote and field-based data collection."
+          }
+        ]
+      },
+      "section6": {
+        "title": "Blog and Insights",
+        "body": "Stay updated with the latest news, stories, and insights from Skill College."
+      },
+      "section7": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join thousands of graduates who have transformed their lives through our programs.",
+        "button": {
+          "title": "Contact Us Today",
+          "href": "/contact"
+        }
+      }
+    },
+    "about": {
+      "section1": {
+        "title": "About Skills College",
+        "body": "Comprehensive research and evaluation services tailored to your needs."
+      },
+      "section2": {
+        "title": "Who We Are",
+        "body": "Comprehensive research and evaluation services tailored to your needs.",
+        "items": [
+          {
+            "title": "Evidence-Based Solutions",
+            "body": "We design and implement programs grounded in research and data, ensuring our interventions create measurable, lasting impact."
+          },
+          {
+            "title": "Our Vision",
+            "body": "To be a leading catalyst for skills development and enterprise growth across Africa, empowering individuals to achieve economic independence."
+          },
+          {
+            "title": "Our Mission",
+            "body": "To bridge the gap between education and employment by delivering market-driven training, research, and consulting services that strengthen MSMEs."
+          }
+        ]
+      },
+      "section3": {
+        "title": "Our Value Proposition",
+        "body": "We combine local expertise with global best practices to deliver measurable impact."
+      },
+      "section5": {
+        "title": "Our Core Values",
+        "body": "The principles that guide everything we do.",
+        "items": [
+          {
+            "title": "Excellence",
+            "body": "We hold ourselves to the highest standards in everything we deliver."
+          },
+          {
+            "title": "Empowerment",
+            "body": "We equip people with tools and confidence to succeed on their own terms."
+          },
+          {
+            "title": "Impact",
+            "body": "We measure our success by the real change we create in people's lives."
+          },
+          {
+            "title": "Innovation",
+            "body": "We embrace creative solutions to address complex development challenges."
+          }
+        ]
+      },
+      "section9": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join us and be part of a growing community of skilled professionals.",
+        "button": {
+          "title": "Get In Touch With Us",
+          "href": "/contact"
+        }
+      }
+    },
+    "services": {
+      "section1": {
+        "title": "Our Services",
+        "body": "Comprehensive solutions designed to empower individuals, strengthen organizations, and drive sustainable development."
+      },
+      "section8": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join hundreds of individuals and organizations who have benefited from our programs and services.",
+        "button": {
+          "title": "Get Started Today",
+          "href": "/contact"
+        }
+      }
+    },
+    "programs": {
+      "section1": {
+        "title": "Skills & Entrepreneurship Programs",
+        "body": "Demand-driven training programs designed to equip you with practical skills for employment and entrepreneurship."
+      },
+      "section2": {
+        "title": "Transform Your Future Through Learning",
+        "body": "Our skills and entrepreneurship programs are designed to bridge the gap between education and employment. We provide market-driven training that empowers individuals to start businesses, secure jobs, and drive economic growth in their communities."
+      },
+      "section8": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join hundreds of individuals and organizations who have benefited from our programs and services.",
+        "button": {
+          "title": "Get Started Today",
+          "href": "/contact"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "info": {
+    "name": "Skill College API",
+    "description": "Complete API collection for Skill College Ltd website",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://webonthego-cms--ayha-the-market.europe-west4.hosted.app/api/v1/websites/skillcollegeltd.com",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Admin Signup (First Time)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Skill\",\n  \"lastName\": \"College\",\n  \"email\": \"admin@skillcollegeltd.com\",\n  \"phone\": \"+234 703 074 9599\",\n  \"role\": \"admin\",\n  \"password\": \"YourSecurePassword123!\",\n  \"privileges\": [\"manage_users\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Admin Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.accessToken) {",
+                  "    pm.collectionVariables.set('token', jsonData.data.accessToken);",
+                  "    console.log('Token saved:', jsonData.data.accessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@skillcollegeltd.com\",\n  \"password\": \"YourSecurePassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signin",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signin"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Site Content",
+      "item": [
+        {
+          "name": "Get All Content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/content",
+              "host": ["{{baseUrl}}"],
+              "path": ["content"]
+            }
+          }
+        },
+        {
+          "name": "Create Site Content (First Time)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteContent\": {\n    \"home\": {\n      \"section1\": {\n        \"title\": \"From Learning to Earning\",\n        \"body\": \"Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services that empower individuals, strengthen MSMEs, and support sustainable development goals.\",\n        \"buttons\": [\n          {\n            \"title\": \"Explore Our Services\",\n            \"href\": \"/services\"\n          },\n          {\n            \"title\": \"Contact Us\",\n            \"href\": \"/contact\"\n          }\n        ]\n      },\n      \"section2\": {\n        \"overline\": \"What We Offer\",\n        \"title\": \"Our Core Services\",\n        \"body\": \"Comprehensive programs designed to equip individuals with the skills and knowledge needed to thrive.\",\n        \"items\": [\n          {\n            \"title\": \"Skills Training Programs\",\n            \"body\": \"Hands-on vocational and technical training programs designed to equip youth with market-ready skills.\"\n          },\n          {\n            \"title\": \"Entrepreneurship Development\",\n            \"body\": \"Comprehensive business development programs that transform ideas into sustainable enterprises.\"\n          },\n          {\n            \"title\": \"Research and Innovation\",\n            \"body\": \"Cutting-edge research services supporting evidence-based decision making and innovation.\"\n          },\n          {\n            \"title\": \"Mentorship and Coaching\",\n            \"body\": \"One-on-one mentorship connecting learners with experienced industry professionals.\"\n          },\n          {\n            \"title\": \"Certification Programs\",\n            \"body\": \"Internationally recognized certification courses that boost employability and career growth.\"\n          },\n          {\n            \"title\": \"Community Development\",\n            \"body\": \"Grassroots programs empowering communities through education and enterprise development.\"\n          }\n        ]\n      },\n      \"section3\": {\n        \"title\": \"Why Choose Skill College\",\n        \"body\": \"We combine academic excellence with practical industry experience to deliver transformative education.\",\n        \"items\": [\n          {\n            \"title\": \"Business-Ready Solutions\",\n            \"body\": \"Our programs are designed in partnership with industry leaders to ensure graduates are job and business ready from day one.\"\n          },\n          {\n            \"title\": \"Experienced Faculty\",\n            \"body\": \"Learn from seasoned professionals and academics with decades of real-world experience across multiple sectors.\"\n          },\n          {\n            \"title\": \"Cutting-Edge Curriculum\",\n            \"body\": \"Our curriculum is regularly updated to reflect current market demands, emerging technologies, and global best practices.\"\n          }\n        ]\n      },\n      \"section4\": {\n        \"title\": \"Our Partners\",\n        \"body\": \"We collaborate with diverse organizations to amplify our impact.\",\n        \"items\": [\n          {\n            \"title\": \"UN Agencies & International Organizations\",\n            \"body\": \"Collaboration with IOM, UNDP, UNHCR, and other UN agencies on development programs.\"\n          },\n          {\n            \"title\": \"NGOs & Government Agencies\",\n            \"body\": \"Strategic partnerships with local and international NGOs for project implementation and government bodies on capacity building and development initiatives.\"\n          },\n          {\n            \"title\": \"Private Sector & Corporates\",\n            \"body\": \"Partnership with businesses for skills development and economic empowerment programs.\"\n          }\n        ]\n      },\n      \"section5\": {\n        \"title\": \"Our Research Services\",\n        \"body\": \"Data-driven insights and rigorous evaluations to measure impact and inform strategic decisions.\",\n        \"items\": [\n          {\n            \"title\": \"Rigorous & Reliable\",\n            \"body\": \"International standards and proven methodologies.\"\n          },\n          {\n            \"title\": \"Context-Specific\",\n            \"body\": \"Tailored approaches for local realities.\"\n          },\n          {\n            \"title\": \"Actionable Insights\",\n            \"body\": \"Practical recommendations you can implement.\"\n          },\n          {\n            \"title\": \"Statistical analysis and reporting\",\n            \"body\": \"Remote and field-based data collection.\"\n          }\n        ]\n      },\n      \"section6\": {\n        \"title\": \"Blog and Insights\",\n        \"body\": \"Stay updated with the latest news, stories, and insights from Skill College.\"\n      },\n      \"section7\": {\n        \"title\": \"Ready to Transform Your Future?\",\n        \"body\": \"Join thousands of graduates who have transformed their lives through our programs.\",\n        \"button\": {\n          \"title\": \"Contact Us Today\",\n          \"href\": \"/contact\"\n        }\n      }\n    },\n    \"about\": {\n      \"section1\": {\n        \"title\": \"About Skills College\",\n        \"body\": \"Comprehensive research and evaluation services tailored to your needs.\"\n      },\n      \"section2\": {\n        \"title\": \"Who We Are\",\n        \"body\": \"Comprehensive research and evaluation services tailored to your needs.\",\n        \"items\": [\n          {\n            \"title\": \"Evidence-Based Solutions\",\n            \"body\": \"We design and implement programs grounded in research and data, ensuring our interventions create measurable, lasting impact.\"\n          },\n          {\n            \"title\": \"Our Vision\",\n            \"body\": \"To be a leading catalyst for skills development and enterprise growth across Africa, empowering individuals to achieve economic independence.\"\n          },\n          {\n            \"title\": \"Our Mission\",\n            \"body\": \"To bridge the gap between education and employment by delivering market-driven training, research, and consulting services that strengthen MSMEs.\"\n          }\n        ]\n      },\n      \"section3\": {\n        \"title\": \"Our Value Proposition\",\n        \"body\": \"We combine local expertise with global best practices to deliver measurable impact.\"\n      },\n      \"section5\": {\n        \"title\": \"Our Core Values\",\n        \"body\": \"The principles that guide everything we do.\",\n        \"items\": [\n          {\n            \"title\": \"Excellence\",\n            \"body\": \"We hold ourselves to the highest standards in everything we deliver.\"\n          },\n          {\n            \"title\": \"Empowerment\",\n            \"body\": \"We equip people with tools and confidence to succeed on their own terms.\"\n          },\n          {\n            \"title\": \"Impact\",\n            \"body\": \"We measure our success by the real change we create in people's lives.\"\n          },\n          {\n            \"title\": \"Innovation\",\n            \"body\": \"We embrace creative solutions to address complex development challenges.\"\n          }\n        ]\n      },\n      \"section9\": {\n        \"title\": \"Ready to Transform Your Future?\",\n        \"body\": \"Join us and be part of a growing community of skilled professionals.\",\n        \"button\": {\n          \"title\": \"Get In Touch With Us\",\n          \"href\": \"/contact\"\n        }\n      }\n    },\n    \"services\": {\n      \"section1\": {\n        \"title\": \"Our Services\",\n        \"body\": \"Comprehensive solutions designed to empower individuals, strengthen organizations, and drive sustainable development.\"\n      },\n      \"section8\": {\n        \"title\": \"Ready to Transform Your Future?\",\n        \"body\": \"Join hundreds of individuals and organizations who have benefited from our programs and services.\",\n        \"button\": {\n          \"title\": \"Get Started Today\",\n          \"href\": \"/contact\"\n        }\n      }\n    },\n    \"programs\": {\n      \"section1\": {\n        \"title\": \"Skills & Entrepreneurship Programs\",\n        \"body\": \"Demand-driven training programs designed to equip you with practical skills for employment and entrepreneurship.\"\n      },\n      \"section2\": {\n        \"title\": \"Transform Your Future Through Learning\",\n        \"body\": \"Our skills and entrepreneurship programs are designed to bridge the gap between education and employment. We provide market-driven training that empowers individuals to start businesses, secure jobs, and drive economic growth in their communities.\"\n      },\n      \"section8\": {\n        \"title\": \"Ready to Transform Your Future?\",\n        \"body\": \"Join hundreds of individuals and organizations who have benefited from our programs and services.\",\n        \"button\": {\n          \"title\": \"Get Started Today\",\n          \"href\": \"/contact\"\n        }\n      }\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/content",
+              "host": ["{{baseUrl}}"],
+              "path": ["content"]
+            }
+          }
+        },
+        {
+          "name": "Update Site Content",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteContent\": {\n    \"home\": {\n      \"section1\": {\n        \"title\": \"From Learning to Earning\",\n        \"body\": \"Bridging the gap between education, business, and development.\"\n      }\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/content",
+              "host": ["{{baseUrl}}"],
+              "path": ["content"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blog Posts",
+      "item": [
+        {
+          "name": "Get All Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/post",
+              "host": ["{{baseUrl}}"],
+              "path": ["post"]
+            }
+          }
+        },
+        {
+          "name": "Create Blog Post 1 - Youth Empowerment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Empowering Youth Through Skills Development in Northeast Nigeria\",\n  \"slug\": \"empowering-youth-skills-development\",\n  \"excerpt\": \"How targeted skills training is transforming livelihoods and creating economic opportunities.\",\n  \"content\": \"<h2>Introduction</h2><p>In Northeast Nigeria, youth unemployment remains a critical challenge. Through our targeted skills development programs, we're creating pathways to economic independence and sustainable livelihoods.</p><h2>Our Approach</h2><p>We combine practical vocational training with entrepreneurship education, ensuring graduates have both technical skills and business acumen to succeed in today's competitive market.</p><h2>Impact Stories</h2><p>Over 500 young people have completed our programs, with 70% securing employment or starting their own businesses within six months of graduation.</p>\",\n  \"status\": \"published\",\n  \"visibility\": \"public\",\n  \"isFeatured\": true,\n  \"category\": {\n    \"id\": \"skills-development\",\n    \"name\": \"Skills Development\",\n    \"slug\": \"skills-development\"\n  },\n  \"tags\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Youth Empowerment\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Skills Training\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Northeast Nigeria\"\n    }\n  ],\n  \"featuredMedia\": {\n    \"url\": \"/images/blog-&-insight/skill-college-blog-&-insight-img1.png\",\n    \"alt\": \"Empowering Youth Through Skills Development\",\n    \"type\": \"image\",\n    \"width\": 1200,\n    \"height\": 800\n  },\n  \"meta\": {\n    \"title\": \"Empowering Youth Through Skills Development | Skill College\",\n    \"description\": \"How targeted skills training is transforming livelihoods in Northeast Nigeria\",\n    \"keywords\": [\"youth empowerment\", \"skills development\", \"northeast nigeria\"]\n  },\n  \"isPromoted\": false,\n  \"isPremium\": false,\n  \"allowComments\": true,\n  \"version\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/post",
+              "host": ["{{baseUrl}}"],
+              "path": ["post"]
+            }
+          }
+        },
+        {
+          "name": "Create Blog Post 2 - Entrepreneurship",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"The Impact of Our Entrepreneurship Programs at Skill College\",\n  \"slug\": \"entrepreneurship-programs-impact\",\n  \"excerpt\": \"Stories of transformation from graduates who turned skills into thriving businesses.\",\n  \"content\": \"<h2>Building Business Leaders</h2><p>Our entrepreneurship programs go beyond basic business training. We provide comprehensive support including mentorship, access to finance, and ongoing coaching to ensure long-term success.</p><h2>Success Stories</h2><p>Meet Fatima, who transformed her tailoring skills into a thriving fashion business employing 5 people. Or Ibrahim, whose catering enterprise now serves major events across Maiduguri.</p><h2>The Skill College Difference</h2><p>We don't just teach business theory—we provide practical tools, real-world experience, and a supportive community that continues long after graduation.</p>\",\n  \"status\": \"published\",\n  \"visibility\": \"public\",\n  \"isFeatured\": true,\n  \"category\": {\n    \"id\": \"entrepreneurship\",\n    \"name\": \"Entrepreneurship\",\n    \"slug\": \"entrepreneurship\"\n  },\n  \"tags\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Entrepreneurship\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Business Development\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Success Stories\"\n    }\n  ],\n  \"featuredMedia\": {\n    \"url\": \"/images/blog-&-insight/skill-college-blog-&-insight-img2.png\",\n    \"alt\": \"Entrepreneurship Programs Impact\",\n    \"type\": \"image\",\n    \"width\": 1200,\n    \"height\": 800\n  },\n  \"meta\": {\n    \"title\": \"The Impact of Our Entrepreneurship Programs | Skill College\",\n    \"description\": \"Stories of transformation from graduates who turned skills into thriving businesses\",\n    \"keywords\": [\"entrepreneurship\", \"business development\", \"success stories\"]\n  },\n  \"isPromoted\": false,\n  \"isPremium\": false,\n  \"allowComments\": true,\n  \"version\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/post",
+              "host": ["{{baseUrl}}"],
+              "path": ["post"]
+            }
+          }
+        },
+        {
+          "name": "Create Blog Post 3 - Skills Assessment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Transition in the Skills Assessment Landscape Across Africa\",\n  \"slug\": \"transition-skills-assessment-africa\",\n  \"excerpt\": \"An overview of how skills assessment frameworks are evolving across the continent.\",\n  \"content\": \"<h2>The Changing Landscape</h2><p>Skills assessment in Africa is undergoing a significant transformation. Traditional certification models are giving way to competency-based frameworks that better reflect real-world capabilities.</p><h2>Regional Trends</h2><p>From Nigeria to Kenya, countries are adopting new standards that align with international best practices while respecting local contexts and needs.</p><h2>Implications for Training Providers</h2><p>Training institutions must adapt their curricula and assessment methods to meet these evolving standards, ensuring graduates are recognized across borders.</p>\",\n  \"status\": \"published\",\n  \"visibility\": \"public\",\n  \"isFeatured\": false,\n  \"category\": {\n    \"id\": \"research\",\n    \"name\": \"Research & Insights\",\n    \"slug\": \"research\"\n  },\n  \"tags\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Skills Assessment\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Africa\"\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Education Policy\"\n    }\n  ],\n  \"featuredMedia\": {\n    \"url\": \"/images/blog-&-insight/skill-college-blog-&-insight-img3.png\",\n    \"alt\": \"Skills Assessment Landscape in Africa\",\n    \"type\": \"image\",\n    \"width\": 1200,\n    \"height\": 800\n  },\n  \"meta\": {\n    \"title\": \"Transition in Skills Assessment Landscape Across Africa | Skill College\",\n    \"description\": \"How skills assessment frameworks are evolving across the continent\",\n    \"keywords\": [\"skills assessment\", \"africa\", \"education policy\"]\n  },\n  \"isPromoted\": false,\n  \"isPremium\": false,\n  \"allowComments\": true,\n  \"version\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/post",
+              "host": ["{{baseUrl}}"],
+              "path": ["post"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscribers",
+      "item": [
+        {
+          "name": "Contact Form Submission",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+234 800 000 0000\",\n  \"type\": \"enquiry\",\n  \"metadata\": {\n    \"message\": \"I'm interested in your skills training programs\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscriber",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscriber"]
+            }
+          }
+        },
+        {
+          "name": "Newsletter Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane@example.com\",\n  \"type\": \"newsletter\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscriber",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscriber"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

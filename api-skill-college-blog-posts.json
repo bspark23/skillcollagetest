@@ -1,0 +1,134 @@
+[
+  {
+    "title": "Empowering Youth Through Skills Development in Northeast Nigeria",
+    "slug": "empowering-youth-skills-development",
+    "excerpt": "How targeted skills training is transforming livelihoods and creating economic opportunities.",
+    "content": "<h2>Introduction</h2><p>In Northeast Nigeria, youth unemployment remains a critical challenge. Through our targeted skills development programs, we're creating pathways to economic independence and sustainable livelihoods.</p><h2>Our Approach</h2><p>We combine practical vocational training with entrepreneurship education, ensuring graduates have both technical skills and business acumen to succeed in today's competitive market.</p><h2>Impact Stories</h2><p>Over 500 young people have completed our programs, with 70% securing employment or starting their own businesses within six months of graduation.</p><h2>Key Success Factors</h2><ul><li>Market-driven curriculum aligned with employer needs</li><li>Hands-on training with real-world projects</li><li>Mentorship from industry professionals</li><li>Access to startup capital and business support</li></ul><h2>Looking Forward</h2><p>As we expand our programs across Northeast Nigeria, we remain committed to creating sustainable pathways out of poverty through skills development and entrepreneurship.</p>",
+    "status": "published",
+    "visibility": "public",
+    "isFeatured": true,
+    "category": {
+      "id": "skills-development",
+      "name": "Skills Development",
+      "slug": "skills-development"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "name": "Youth Empowerment"
+      },
+      {
+        "id": "2",
+        "name": "Skills Training"
+      },
+      {
+        "id": "3",
+        "name": "Northeast Nigeria"
+      }
+    ],
+    "featuredMedia": {
+      "url": "/images/blog-&-insight/skill-college-blog-&-insight-img1.png",
+      "alt": "Empowering Youth Through Skills Development",
+      "type": "image",
+      "width": 1200,
+      "height": 800
+    },
+    "meta": {
+      "title": "Empowering Youth Through Skills Development | Skill College",
+      "description": "How targeted skills training is transforming livelihoods in Northeast Nigeria",
+      "keywords": ["youth empowerment", "skills development", "northeast nigeria"]
+    },
+    "isPromoted": false,
+    "isPremium": false,
+    "allowComments": true,
+    "version": 1
+  },
+  {
+    "title": "The Impact of Our Entrepreneurship Programs at Skill College",
+    "slug": "entrepreneurship-programs-impact",
+    "excerpt": "Stories of transformation from graduates who turned skills into thriving businesses.",
+    "content": "<h2>Building Business Leaders</h2><p>Our entrepreneurship programs go beyond basic business training. We provide comprehensive support including mentorship, access to finance, and ongoing coaching to ensure long-term success.</p><h2>Success Stories</h2><p>Meet Fatima, who transformed her tailoring skills into a thriving fashion business employing 5 people. Or Ibrahim, whose catering enterprise now serves major events across Maiduguri.</p><h3>Fatima's Journey</h3><p>After completing our 6-month tailoring and entrepreneurship program, Fatima received seed funding to purchase equipment. Today, her business generates monthly revenue of ₦500,000 and she's training 3 apprentices.</p><h3>Ibrahim's Success</h3><p>Ibrahim joined our catering program with just basic cooking skills. Through intensive training and business mentorship, he launched his catering service. Within 18 months, he's catering for corporate events and weddings.</p><h2>The Skill College Difference</h2><p>We don't just teach business theory—we provide practical tools, real-world experience, and a supportive community that continues long after graduation.</p><h2>Program Components</h2><ul><li>Technical skills training in chosen field</li><li>Business planning and financial management</li><li>Marketing and customer service</li><li>Access to microfinance and grants</li><li>Ongoing mentorship and support</li></ul>",
+    "status": "published",
+    "visibility": "public",
+    "isFeatured": true,
+    "category": {
+      "id": "entrepreneurship",
+      "name": "Entrepreneurship",
+      "slug": "entrepreneurship"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "name": "Entrepreneurship"
+      },
+      {
+        "id": "2",
+        "name": "Business Development"
+      },
+      {
+        "id": "3",
+        "name": "Success Stories"
+      }
+    ],
+    "featuredMedia": {
+      "url": "/images/blog-&-insight/skill-college-blog-&-insight-img2.png",
+      "alt": "Entrepreneurship Programs Impact",
+      "type": "image",
+      "width": 1200,
+      "height": 800
+    },
+    "meta": {
+      "title": "The Impact of Our Entrepreneurship Programs | Skill College",
+      "description": "Stories of transformation from graduates who turned skills into thriving businesses",
+      "keywords": ["entrepreneurship", "business development", "success stories"]
+    },
+    "isPromoted": false,
+    "isPremium": false,
+    "allowComments": true,
+    "version": 1
+  },
+  {
+    "title": "Transition in the Skills Assessment Landscape Across Africa",
+    "slug": "transition-skills-assessment-africa",
+    "excerpt": "An overview of how skills assessment frameworks are evolving across the continent.",
+    "content": "<h2>The Changing Landscape</h2><p>Skills assessment in Africa is undergoing a significant transformation. Traditional certification models are giving way to competency-based frameworks that better reflect real-world capabilities.</p><h2>Regional Trends</h2><p>From Nigeria to Kenya, countries are adopting new standards that align with international best practices while respecting local contexts and needs.</p><h3>West Africa</h3><p>Countries like Nigeria, Ghana, and Senegal are implementing regional qualifications frameworks that enable cross-border recognition of skills and certifications.</p><h3>East Africa</h3><p>The East African Community has established common standards for technical and vocational education, facilitating labor mobility across member states.</p><h2>Implications for Training Providers</h2><p>Training institutions must adapt their curricula and assessment methods to meet these evolving standards, ensuring graduates are recognized across borders.</p><h2>Key Developments</h2><ul><li>Shift from knowledge-based to competency-based assessment</li><li>Integration of digital credentials and blockchain verification</li><li>Recognition of prior learning and informal skills</li><li>Alignment with industry 4.0 requirements</li></ul><h2>The Role of Technology</h2><p>Digital platforms are revolutionizing how skills are assessed and certified, making the process more accessible, transparent, and verifiable.</p><h2>Looking Ahead</h2><p>As Africa's skills assessment landscape continues to evolve, institutions like Skill College are at the forefront, ensuring our graduates meet both local and international standards.</p>",
+    "status": "published",
+    "visibility": "public",
+    "isFeatured": false,
+    "category": {
+      "id": "research",
+      "name": "Research & Insights",
+      "slug": "research"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "name": "Skills Assessment"
+      },
+      {
+        "id": "2",
+        "name": "Africa"
+      },
+      {
+        "id": "3",
+        "name": "Education Policy"
+      }
+    ],
+    "featuredMedia": {
+      "url": "/images/blog-&-insight/skill-college-blog-&-insight-img3.png",
+      "alt": "Skills Assessment Landscape in Africa",
+      "type": "image",
+      "width": 1200,
+      "height": 800
+    },
+    "meta": {
+      "title": "Transition in Skills Assessment Landscape Across Africa | Skill College",
+      "description": "How skills assessment frameworks are evolving across the continent",
+      "keywords": ["skills assessment", "africa", "education policy"]
+    },
+    "isPromoted": false,
+    "isPremium": false,
+    "allowComments": true,
+    "version": 1
+  }
+]
