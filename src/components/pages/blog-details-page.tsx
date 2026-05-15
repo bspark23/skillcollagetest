@@ -1,11 +1,14 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { Post } from "@/models/post";
-import { ChevronRight, Calendar, User } from "lucide-react";
+import { Calendar, User, ArrowLeft } from "lucide-react";
 
-const inner = "max-w-[1440px] mx-auto px-4 md:px-[120px]";
+const NAVY = "#01244A";
+const ORANGE = "#E58825";
+const PEACH = "#FEF5EC";
+const WHITE = "#FFFFFF";
 
 export default function BlogDetailsPage({ post, relatedPosts = [] }: { post: Post; relatedPosts?: Post[] }) {
   const formatDate = (d: string) => {
@@ -14,106 +17,112 @@ export default function BlogDetailsPage({ post, relatedPosts = [] }: { post: Pos
   };
 
   return (
-    <div style={{ fontFamily: "var(--font-inter), sans-serif", background: "#0a0a0a", color: "#fff" }}>
+    <div style={{ fontFamily: "var(--font-inter), sans-serif", background: WHITE, color: "#222" }}>
 
-      {/* HERO */}
-      <section className="relative w-full flex items-center justify-center overflow-hidden -mt-[72px] pt-[72px]" style={{ height: "350px", background: "linear-gradient(90deg, #000000 0%, #18181B 50%, #000000 100%)" }}>
-        <div className="relative z-10 text-center px-5">
-          {/* Breadcrumb */}
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-            <Link href="/" style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, textDecoration: "none" }}>Home</Link>
-            <ChevronRight size={14} color="rgba(255,255,255,0.4)" />
-            <Link href="/blog" style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, textDecoration: "none" }}>Blog</Link>
-            <ChevronRight size={14} color="rgba(255,255,255,0.4)" />
-            <span style={{ color: "#FEC700", fontSize: 13 }}>Article</span>
-          </div>
-          <h1 className="text-white font-bold leading-tight" style={{ fontSize: "clamp(24px, 4vw, 40px)", maxWidth: 900, margin: "0 auto" }}>
+      {/* HERO WITH FEATURED IMAGE */}
+      <section style={{ position: "relative", width: "100%", minHeight: "clamp(400px, 50vw, 600px)", overflow: "hidden", marginTop: -88 }}>
+        {post.featuredMedia?.url ? (
+          <>
+            <Image 
+              src={post.featuredMedia.url} 
+              alt={post.title} 
+              fill 
+              style={{ objectFit: "cover", objectPosition: "center" }} 
+              priority 
+            />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(1,36,74,0.7), rgba(1,36,74,0.85))" }} />
+          </>
+        ) : (
+          <div style={{ position: "absolute", inset: 0, background: NAVY }} />
+        )}
+        
+        <div style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", paddingBottom: 60, paddingLeft: 20, paddingRight: 20, textAlign: "center" }}>
+          <h1 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(24px, 4vw, 48px)", marginBottom: 20, lineHeight: 1.2, maxWidth: 900 }}>
             {post.title}
           </h1>
+          
+          {/* Meta Info */}
+          <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <Calendar size={16} color={ORANGE} />
+              <span style={{ color: "rgba(255,255,255,0.9)", fontSize: 14 }}>
+                {formatDate(post.publishedAt || post.createdAt)}
+              </span>
+            </div>
+            {post.author && typeof post.author === 'object' && 'name' in post.author && (
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <User size={16} color={ORANGE} />
+                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: 14 }}>{post.author.name}</span>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       {/* ARTICLE CONTENT */}
-      <section style={{ background: "#0a0a0a", paddingTop: 48, paddingBottom: 64 }}>
-        <div className={inner}>
-          <div style={{ maxWidth: 900, margin: "0 auto" }}>
-            
-            {/* Meta Info */}
-            <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 32, flexWrap: "wrap" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <Calendar size={16} color="#FEC700" />
-                <span style={{ color: "#b0b0b0", fontSize: 13 }}>
-                  {formatDate(post.publishedAt || post.createdAt)}
-                </span>
-              </div>
-              {post.author && typeof post.author === 'object' && 'name' in post.author && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <User size={16} color="#FEC700" />
-                  <span style={{ color: "#b0b0b0", fontSize: 13 }}>{post.author.name}</span>
-                </div>
-              )}
+      <section style={{ background: WHITE, padding: "60px 20px 80px" }} className="md:px-[120px]">
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          
+          {/* Back Button */}
+          <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: NAVY, fontSize: 14, fontWeight: 600, textDecoration: "none", marginBottom: 32 }}>
+            <ArrowLeft size={18} />
+            Back to Blog
+          </Link>
+
+          {/* Excerpt */}
+          {post.excerpt && (
+            <div style={{ background: PEACH, border: `1px solid ${ORANGE}20`, borderLeft: `4px solid ${ORANGE}`, padding: "20px 24px", borderRadius: 12, marginBottom: 40 }}>
+              <p style={{ color: "#555", fontSize: 16, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>
+                {post.excerpt}
+              </p>
             </div>
+          )}
 
-            {/* Featured Image */}
-            {post.featuredMedia?.url && (
-              <div style={{ borderRadius: 16, overflow: "hidden", marginBottom: 40, position: "relative", height: "clamp(300px, 50vw, 500px)" }}>
-                <Image src={post.featuredMedia.url} alt={post.title} fill style={{ objectFit: "cover" }} />
+          {/* Article Content */}
+          <div
+            className="blog-content"
+            style={{ color: "#444", fontSize: 16, lineHeight: 1.9 }}
+            dangerouslySetInnerHTML={{ __html: post.content || `<p>${post.excerpt || ""}</p>` }}
+          />
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div style={{ marginTop: 48, paddingTop: 32, borderTop: "1px solid rgba(1,36,74,0.1)" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                {post.tags.map((tag, i) => (
+                  <span key={i} style={{ background: PEACH, color: NAVY, padding: "6px 16px", borderRadius: 20, fontSize: 13, fontWeight: 600 }}>
+                    {tag.name}
+                  </span>
+                ))}
               </div>
-            )}
-
-            {/* Excerpt */}
-            {post.excerpt && (
-              <div style={{ background: "#1a1a1a", border: "1px solid #333", borderLeft: "4px solid #FEC700", padding: "20px 24px", borderRadius: 8, marginBottom: 32 }}>
-                <p style={{ color: "#e0e0e0", fontSize: 15, lineHeight: 1.7, margin: 0, fontStyle: "italic" }}>
-                  {post.excerpt}
-                </p>
-              </div>
-            )}
-
-            {/* Article Content */}
-            <div
-              className="blog-content"
-              style={{ color: "#d0d0d0", fontSize: 15, lineHeight: 1.9 }}
-              dangerouslySetInnerHTML={{ __html: post.content || `<p>${post.excerpt || ""}</p>` }}
-            />
-
-            {/* Back to Blog */}
-            <div style={{ marginTop: 48, paddingTop: 32, borderTop: "1px solid #333" }}>
-              <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#FEC700", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
-                ← Back to Blog
-              </Link>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
       {/* RELATED POSTS */}
-      {relatedPosts.length > 0 && (
-        <section style={{ background: "#0a0a0a", paddingTop: 32, paddingBottom: 64 }}>
-          <div className={inner}>
-            <h2 style={{ color: "#fff", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 800, marginBottom: 32, textAlign: "center" }}>
+      {relatedPosts && relatedPosts.length > 0 && (
+        <section style={{ background: PEACH, padding: "60px 20px 80px" }} className="md:px-[120px]">
+          <div style={{ maxWidth: 1728, margin: "0 auto" }}>
+            <h2 style={{ color: NAVY, fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 800, marginBottom: 40, textAlign: "center" }}>
               Related Articles
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedPosts.slice(0, 3).map((item: Post, i: number) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
+              {relatedPosts.slice(0, 3).map((item: Post) => {
                 const img = item.featuredMedia?.url;
                 const date = formatDate(item.publishedAt || item.createdAt);
                 return (
-                  <div key={i} style={{ background: "#1a1a1a", borderRadius: 14, overflow: "hidden", border: "1px solid #333", display: "flex", flexDirection: "column" }}>
-                    <div style={{ height: 200, backgroundImage: img ? `url('${img}')` : "none", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: img ? undefined : "#333", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} />
-                    <div style={{ padding: "18px 20px 20px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                      <div>
-                        <h3 style={{ color: "#fff", fontSize: 15, fontWeight: 800, marginBottom: 8, lineHeight: 1.35 }}>{item.title}</h3>
-                        <p style={{ color: "#b0b0b0", fontSize: 12, lineHeight: 1.6, marginBottom: 16 }}>{item.excerpt}</p>
-                      </div>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                        <span style={{ color: "#808080", fontSize: 11 }}>{date}</span>
-                        <Link href={`/blog?slug=${item.slug}`} style={{ color: "#FEC700", fontSize: 12, fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
-                          Read More →
-                        </Link>
-                      </div>
+                  <Link key={item.id} href={`/blog/${item.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(1,36,74,0.1)", background: WHITE }}>
+                    <div style={{ position: "relative", height: 200, background: "#e8e8e8", flexShrink: 0 }}>
+                      {img && <Image src={img} alt={item.title} fill style={{ objectFit: "cover" }} />}
                     </div>
-                  </div>
+                    <div style={{ padding: "20px 24px", flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
+                      <span style={{ color: ORANGE, fontSize: 12, fontWeight: 600 }}>{date}</span>
+                      <h3 style={{ color: NAVY, fontWeight: 700, fontSize: 16, lineHeight: 1.4, margin: 0 }}>{item.title}</h3>
+                      <p style={{ color: "#666", fontSize: 14, lineHeight: 1.6, margin: 0, flex: 1 }}>{item.excerpt}</p>
+                      <span style={{ color: ORANGE, fontSize: 14, fontWeight: 600, marginTop: 8 }}>Read More →</span>
+                    </div>
+                  </Link>
                 );
               })}
             </div>
@@ -121,16 +130,96 @@ export default function BlogDetailsPage({ post, relatedPosts = [] }: { post: Pos
         </section>
       )}
 
-      {/* CTA */}
-      <section style={{ background: "linear-gradient(90deg, #FEC700 0%, #D08602 100%)", paddingTop: 72, paddingBottom: 72 }}>
-        <div className={`${inner} text-center`}>
-          <h2 style={{ color: "#000", fontSize: "clamp(20px, 3vw, 32px)", fontWeight: 800, marginBottom: 12 }}>Ready to Transform Your Hospitality Experience?</h2>
-          <p style={{ color: "#333", fontSize: 14, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 28px" }}>Let's work together to create exceptional experiences that exceed expectations.</p>
-          <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#000", color: "#FEC700", padding: "14px 36px", borderRadius: 100, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
-            Start a Project Today →
+      {/* CTA SECTION */}
+      <section style={{ background: NAVY, padding: "60px 20px" }} className="md:px-[120px]">
+        <div style={{ maxWidth: 1728, margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(24px, 3vw, 32px)", marginBottom: 16 }}>
+            Ready to Transform Your Future?
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 16, maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.75 }}>
+            Join hundreds of individuals and organizations who have benefited from our programs and services.
+          </p>
+          <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: ORANGE, color: WHITE, borderRadius: 100, fontWeight: 700, textDecoration: "none", fontSize: 15, padding: "16px 40px" }}>
+            Get Started Today
           </Link>
         </div>
       </section>
+
+      <style jsx global>{`
+        .blog-content h2 {
+          color: ${NAVY};
+          font-size: clamp(20px, 2.5vw, 28px);
+          font-weight: 800;
+          margin: 32px 0 16px;
+          line-height: 1.3;
+        }
+        .blog-content h3 {
+          color: ${NAVY};
+          font-size: clamp(18px, 2vw, 22px);
+          font-weight: 700;
+          margin: 28px 0 14px;
+          line-height: 1.4;
+        }
+        .blog-content p {
+          margin: 0 0 20px;
+          color: #444;
+          line-height: 1.9;
+        }
+        .blog-content ul, .blog-content ol {
+          margin: 0 0 24px;
+          padding-left: 28px;
+          color: #444;
+        }
+        .blog-content li {
+          margin-bottom: 12px;
+          line-height: 1.8;
+        }
+        .blog-content strong {
+          color: ${NAVY};
+          font-weight: 700;
+        }
+        .blog-content a {
+          color: ${ORANGE};
+          text-decoration: underline;
+        }
+        .blog-content a:hover {
+          color: ${NAVY};
+        }
+        .blog-content blockquote {
+          border-left: 4px solid ${ORANGE};
+          background: ${PEACH};
+          padding: 16px 24px;
+          margin: 24px 0;
+          border-radius: 8px;
+          font-style: italic;
+          color: #555;
+        }
+        .blog-content img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 12px;
+          margin: 24px 0;
+        }
+        .blog-content code {
+          background: ${PEACH};
+          color: ${NAVY};
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-size: 0.9em;
+          font-family: 'Courier New', monospace;
+        }
+        .blog-content pre {
+          background: #f5f5f5;
+          padding: 20px;
+          border-radius: 8px;
+          overflow-x: auto;
+          margin: 24px 0;
+        }
+        .blog-content pre code {
+          background: none;
+          padding: 0;
+        }
+      `}</style>
 
     </div>
   );

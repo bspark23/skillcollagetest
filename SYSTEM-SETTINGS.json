@@ -1,0 +1,160 @@
+{
+  "siteName": "Skill College & Enterprise Ltd",
+  "siteLogo": "/images/skill-college-logo.png",
+  "siteIcon": "/images/skill-college-logo.png",
+  "siteUrl": "https://skillcollegeltd.com",
+  "siteSlogan": "From Learning to Earning",
+  "siteGraphImage": "/images/skill-college-hero-slider1.png",
+  "siteKeywords": [
+    "skills training",
+    "entrepreneurship",
+    "vocational training",
+    "business development",
+    "research services",
+    "capacity building",
+    "MSME support",
+    "youth empowerment",
+    "Nigeria",
+    "Maiduguri"
+  ],
+  "siteDescription": "Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services.",
+  "siteAuthor": "Skill College & Enterprise Ltd",
+  "siteLocale": "en_NG",
+  "siteType": "website",
+  "ogTitle": "Skill College & Enterprise Ltd - From Learning to Earning",
+  "ogDescription": "Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services that empower individuals, strengthen MSMEs, and support sustainable development goals.",
+  "ogImage": "/images/skill-college-hero-slider1.png",
+  "ogImageAlt": "Skill College & Enterprise Ltd",
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@skillcollegeltd",
+  "twitterCreator": "@skillcollegeltd",
+  "twitterTitle": "Skill College & Enterprise Ltd - From Learning to Earning",
+  "twitterDescription": "Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services.",
+  "twitterImage": "/images/skill-college-hero-slider1.png",
+  "maintenanceMode": false,
+  "headerLinks": [
+    {
+      "label": "Home",
+      "href": "/",
+      "isButton": false
+    },
+    {
+      "label": "About",
+      "href": "/about",
+      "isButton": false
+    },
+    {
+      "label": "Services",
+      "href": "/services",
+      "isButton": false
+    },
+    {
+      "label": "Programs",
+      "href": "/programs",
+      "isButton": false
+    },
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "isButton": false
+    },
+    {
+      "label": "Contact Us",
+      "href": "/contact",
+      "isButton": true
+    }
+  ],
+  "footerLinks": [
+    {
+      "section": "Our Services",
+      "links": [
+        {
+          "label": "Skills & Entrepreneurship",
+          "href": "/services"
+        },
+        {
+          "label": "Research & Evaluations",
+          "href": "/services"
+        },
+        {
+          "label": "Business Development",
+          "href": "/services"
+        },
+        {
+          "label": "Language Services",
+          "href": "/services"
+        },
+        {
+          "label": "MSME Support",
+          "href": "/services"
+        },
+        {
+          "label": "Strategic Partnerships",
+          "href": "/services"
+        }
+      ]
+    },
+    {
+      "section": "Contact Us",
+      "links": [
+        {
+          "label": "No.12 Aisha Plaza, Off Mashidimami Damboa Road, Maiduguri",
+          "href": "/contact"
+        },
+        {
+          "label": "+234 703 674 9599",
+          "href": "tel:+2347036749599"
+        },
+        {
+          "label": "skillscollege.ltd@gmail.com",
+          "href": "mailto:skillscollege.ltd@gmail.com"
+        }
+      ]
+    }
+  ],
+  "socialLinks": [
+    {
+      "label": "WhatsApp",
+      "href": "https://wa.me/2347030749599",
+      "icon": "whatsapp",
+      "target": "_blank"
+    },
+    {
+      "label": "Facebook",
+      "href": "https://facebook.com/skillcollegeltd",
+      "icon": "facebook",
+      "target": "_blank"
+    },
+    {
+      "label": "Twitter",
+      "href": "https://twitter.com/skillcollegeltd",
+      "icon": "twitter",
+      "target": "_blank"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://linkedin.com/company/skillcollegeltd",
+      "icon": "linkedin",
+      "target": "_blank"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://instagram.com/skillcollegeltd",
+      "icon": "instagram",
+      "target": "_blank"
+    }
+  ],
+  "contact": {
+    "email": "skillscollege.ltd@gmail.com",
+    "phones": ["+234 703 674 9599"],
+    "whatsappPhone": "+2347036749599",
+    "addresses": [
+      {
+        "country": "Nigeria",
+        "phone": "+234 703 674 9599",
+        "address": "No.12 Aisha Plaza, Off Mashidimami Damboa Road, Maiduguri, Borno State, Nigeria"
+      }
+    ],
+    "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.123456789!2d13.1234567!3d11.8234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDQ5JzI0LjQiTiAxM8KwMDcnMjQuNCJF!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng"
+  }
+}

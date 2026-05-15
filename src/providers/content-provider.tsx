@@ -7,16 +7,16 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
-  const { content } = useAppSelector((state) => state.content);
+  const { content, loading } = useAppSelector((state) => state.content);
   useContent();
 
   const [minTimePassed, setMinTimePassed] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setMinTimePassed(true), 1500);
+    const t = setTimeout(() => setMinTimePassed(true), 800); // Reduced from 1500ms
     return () => clearTimeout(t);
   }, []);
 
-  const contentReady = !!content?.siteContent?.home;
+  const contentReady = !!content?.siteContent?.home || !!content?.systemSettings?.siteName;
   const showLoader = !contentReady || !minTimePassed;
 
   return (
@@ -26,35 +26,34 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
           key="loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           style={{
             position: "fixed", inset: 0, zIndex: 9999,
             background: "#FFFFFF",
             display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", gap: 28,
+            alignItems: "center", justifyContent: "center", gap: 24,
           }}
         >
           <motion.div
-            animate={{ scale: [1, 1.07, 1], opacity: [0.8, 1, 0.8] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Image src="/images/skill-college-logo.png" alt="Skill College" width={160} height={50} style={{ objectFit: "contain" }} />
+            <Image src="/images/skill-college-logo.png" alt="Skill College" width={140} height={44} style={{ objectFit: "contain" }} priority />
           </motion.div>
-          <div style={{ width: 180, height: 3, background: "rgba(1,36,74,0.1)", borderRadius: 99, overflow: "hidden" }}>
+          <div style={{ width: 160, height: 2, background: "rgba(1,36,74,0.1)", borderRadius: 99, overflow: "hidden" }}>
             <motion.div
               style={{ height: "100%", background: "#E58825", borderRadius: 99 }}
               animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
-          <p style={{ color: "rgba(1,36,74,0.4)", fontSize: 12, letterSpacing: "0.08em" }}>Skill College and Enterprise Ltd</p>
         </motion.div>
       ) : (
         <motion.div
           key="app"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
           {children}
           <Sonner />

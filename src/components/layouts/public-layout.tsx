@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -12,7 +12,6 @@ import { Menu, X, MessageCircle, Linkedin, Instagram, Facebook, Twitter } from "
 const NAVY = "#01244A";
 const ORANGE = "#E58825";
 const WHITE = "#FFFFFF";
-const LOGO = "/images/skill-college-logo.png";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   useContent();
@@ -21,28 +20,10 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const navLinks = systemSettings?.headerLinks || [
-    { label: "Home", href: "/", isButton: false },
-    { label: "About Us", href: "/about", isButton: false },
-    { label: "Services", href: "/services", isButton: false },
-    { label: "Programs", href: "/programs", isButton: false },
-    { label: "Blog", href: "/blog", isButton: false },
-    { label: "Contact Us", href: "/contact", isButton: true },
-  ];
-
-  const socialLinks = systemSettings?.socialLinks || [
-    { label: "WhatsApp", href: "#", icon: "whatsapp" },
-    { label: "LinkedIn", href: "#", icon: "linkedin" },
-    { label: "Instagram", href: "#", icon: "instagram" },
-    { label: "Facebook", href: "#", icon: "facebook" },
-    { label: "X", href: "#", icon: "x" },
-  ];
-
-  const footerLinks = systemSettings?.footerLinks || [
-    { section: "Quick Links", links: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "services", href: "/services" }, { label: "Programs", href: "/programs" }, { label: "Blog", href: "/blog" }] },
-    { section: "Our Services", links: [{ label: "Skills & Entrepreneurship", href: "/services" }, { label: "Research & Evaluations", href: "/services" }, { label: "Business Development", href: "/services" }, { label: "Language Services", href: "/services" }, { label: "MSME Support", href: "/services" }, { label: "Strategic Partnerships", href: "/services" }] },
-    { section: "Contact Us", links: [{ label: "No. 12 Aisha Plaza, Off Mashidimami Damboa Road, Maiduguri", href: "#" }, { label: "+234 703 674 9599", href: "tel:+2347036749599" }, { label: "skillscollege.ltd@gmail.com", href: "mailto:skillscollege.ltd@gmail.com" }] },
-  ];
+  const navLinks = systemSettings?.headerLinks || [];
+  const socialLinks = systemSettings?.socialLinks || [];
+  const footerLinks = systemSettings?.footerLinks || [];
+  const logoSrc = systemSettings?.siteLogo || "";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -68,7 +49,13 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         <div style={{ position: "fixed", inset: 0, zIndex: 99999, background: "#FEF5EC", display: "flex", flexDirection: "column", padding: "32px 28px 48px", overflowY: "auto" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 48 }}>
             <Link href="/" onClick={() => setMobileOpen(false)}>
-              <Image src={LOGO} alt="Skill College" width={120} height={36} style={{ objectFit: "contain" }} />
+              {logoSrc ? (
+                <Image src={logoSrc} alt={systemSettings?.siteName || ""} width={120} height={36} style={{ objectFit: "contain" }} />
+              ) : (
+                <span style={{ color: NAVY, fontSize: 16, fontWeight: 800 }}>
+                  {systemSettings?.siteName}
+                </span>
+              )}
             </Link>
             <button onClick={() => setMobileOpen(false)} style={{ background: "none", border: "none", cursor: "pointer" }}>
               <X size={28} color={NAVY} />
@@ -110,7 +97,13 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           transition: "box-shadow 0.3s",
         }}>
           <Link href="/" style={{ flexShrink: 0, textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <Image src={LOGO} alt="Skill College" width={110} height={34} style={{ objectFit: "contain" }} priority />
+            {logoSrc ? (
+              <Image src={logoSrc} alt={systemSettings?.siteName || ""} width={110} height={34} style={{ objectFit: "contain" }} priority />
+            ) : (
+              <span style={{ color: NAVY, fontSize: 16, fontWeight: 800 }}>
+                {systemSettings?.siteName}
+              </span>
+            )}
           </Link>
 
           <ul className="hidden md:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: 28, alignItems: "center", flex: 1, justifyContent: "center" }}>
@@ -147,10 +140,16 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
               <div style={{ marginBottom: 16 }}>
-                <Image src={LOGO} alt="Skill College" width={120} height={36} style={{ objectFit: "contain" }} />
+                {logoSrc ? (
+                  <Image src={logoSrc} alt={systemSettings?.siteName || ""} width={120} height={36} style={{ objectFit: "contain" }} />
+                ) : (
+                  <span style={{ color: NAVY, fontSize: 16, fontWeight: 800 }}>
+                    {systemSettings?.siteName}
+                  </span>
+                )}
               </div>
               <p style={{ color: "#666", fontSize: 12, lineHeight: 1.8, maxWidth: 220, marginBottom: 20 }}>
-                {systemSettings?.siteDescription || "Bridging the gap between education and practical impact, shaping innovators, entrepreneurs, and change-makers."}
+                {systemSettings?.siteDescription}
               </p>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {socialLinks.map((s: NavLink) => (
@@ -176,13 +175,8 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           </div>
           <div style={{ marginTop: 40, paddingTop: 20, borderTop: "1px solid rgba(1,36,74,0.08)", background: "#01244A", margin: "40px -20px -32px", padding: "20px 20px", display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }} className="md:flex-row md:justify-between md:px-[120px]">
             <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 12, textAlign: "center" }}>
-              2026 {systemSettings?.siteName || "Skill College and Enterprise Ltd"}. All rights reserved.
+              {systemSettings?.siteName ? `2026 ${systemSettings.siteName}. All rights reserved.` : ""}
             </span>
-            <div style={{ display: "flex", gap: 24 }}>
-              {["Privacy Policy", "Terms of Service"].map((t) => (
-                <Link key={t} href="#" style={{ color: "rgba(255,255,255,0.6)", fontSize: 12, textDecoration: "none" }}>{t}</Link>
-              ))}
-            </div>
           </div>
         </div>
       </footer>

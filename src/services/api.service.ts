@@ -1,4 +1,4 @@
-export const BASE_URL = "https://webonthego-cms--ayha-the-market.europe-west4.hosted.app/api/v1/websites/skillcollegeltd.com";
+export const BASE_URL = "https://us-central1-ayha-the-market.cloudfunctions.net/api/v1/websites/skillcollegeltd.com";
 
 export interface ApiResponse<T> {
   success: boolean;

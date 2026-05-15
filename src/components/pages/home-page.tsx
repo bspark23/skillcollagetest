@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import { Section, Item } from "@/models/content";
 import { useAppDispatch } from "@/store/hooks";
 import { fetchPosts } from "@/store/slices/blog-slice";
 import { Post } from "@/models/post";
+import { SubscriberService } from "@/services/subscriber.service";
 
 const NAVY = "#01244A";
 const ORANGE = "#E58825";
@@ -17,54 +18,6 @@ const WHITE = "#FFFFFF";
 const PARTNER_CARD = "#FBEADB";
 const RESEARCH_CARD = "#F6D7B6";
 const WHY_CARD = "#D8EAFE";
-
-const HERO_SLIDES = [
-  "/images/skill-college-hero-slider1.png",
-  "/images/skill-college-hero-slider2.png",
-  "/images/skill-college-hero-slider3.png",
-  "/images/skill-college-hero-slider4.png",
-];
-
-const STATS = [
-  { value: "500+", label: "Trained Individuals" },
-  { value: "50+", label: "Partner Organizations" },
-  { value: "100+", label: "Completed Projects" },
-  { value: "5+", label: "Years Experience" },
-];
-
-const DEFAULT_SERVICES: Item[] = [
-  { title: "Skills Training Programs", body: "Hands-on vocational and technical training programs designed to equip youth with market-ready skills." },
-  { title: "Entrepreneurship Development", body: "Comprehensive business development programs that transform ideas into sustainable enterprises." },
-  { title: "Research and Innovation", body: "Cutting-edge research services supporting evidence-based decision making and innovation." },
-  { title: "Mentorship and Coaching", body: "One-on-one mentorship connecting learners with experienced industry professionals." },
-  { title: "Certification Programs", body: "Internationally recognized certification courses that boost employability and career growth." },
-  { title: "Community Development", body: "Grassroots programs empowering communities through education and enterprise development." },
-];
-
-const DEFAULT_WHY_CHOOSE: Item[] = [
-  { title: "Business-Ready Solutions", body: "Our programs are designed in partnership with industry leaders to ensure graduates are job and business ready from day one." },
-  { title: "Experienced Faculty", body: "Learn from seasoned professionals and academics with decades of real-world experience across multiple sectors." },
-  { title: "Cutting-Edge Curriculum", body: "Our curriculum is regularly updated to reflect current market demands, emerging technologies, and global best practices." },
-];
-
-const DEFAULT_PARTNERS: Item[] = [
-  { title: "UN Agencies & International Organizations", body: "Collaboration with IOM, UNDP, UNHCR, and other UN agencies on development programs." },
-  { title: "NGOs & Government Agencies", body: "Strategic partnerships with local and international NGOs for project implementation and government bodies on capacity building and development initiatives." },
-  { title: "Private Sector & Corporates", body: "Partnership with businesses for skills development and economic empowerment programs." },
-];
-
-const DEFAULT_RESEARCH: Item[] = [
-  { title: "Rigorous & Reliable", body: "International standards and proven methodologies." },
-  { title: "Context-Specific", body: "Tailored approaches for local realities." },
-  { title: "Actionable Insights", body: "Practical recommendations you can implement." },
-  { title: "Statistical analysis and reporting", body: "Remote and field-based data collection." },
-];
-
-const DEFAULT_BLOG = [
-  { id: "1", slug: "empowering-youth-skills-development", title: "Empowering Youth Through Skills Development in Northeast Nigeria", excerpt: "How targeted skills training is transforming livelihoods and creating economic opportunities.", image: "/images/blog-&-insight/skill-college-blog-&-insight-img1.png", date: "May 20, 2025" },
-  { id: "2", slug: "entrepreneurship-programs-impact", title: "The Impact of Our Entrepreneurship Programs at Skill College", excerpt: "Stories of transformation from graduates who turned skills into thriving businesses.", image: "/images/blog-&-insight/skill-college-blog-&-insight-img2.png", date: "May 15, 2025" },
-  { id: "3", slug: "transition-skills-assessment-africa", title: "Transition in the Skills Assessment Landscape Across Africa", excerpt: "An overview of how skills assessment frameworks are evolving across the continent.", image: "/images/blog-&-insight/skill-college-blog-&-insight-img3.png", date: "May 10, 2025" },
-];
 
 export default function HomePage() {
   useContent();
@@ -79,21 +32,56 @@ export default function HomePage() {
   const s5 = home?.section5 as Section;
   const s6 = home?.section6 as Section;
   const s7 = home?.section7 as Section;
+  const s8 = home?.section8 as Section;
+  const s9 = home?.section9 as Section;
 
-  const coreServices = s2?.items?.length ? s2.items : DEFAULT_SERVICES;
-  const whyChoose = s3?.items?.length ? s3.items : DEFAULT_WHY_CHOOSE;
-  const partners = s4?.items?.length ? s4.items : DEFAULT_PARTNERS;
-  const researchServices = s5?.items?.length ? s5.items : DEFAULT_RESEARCH;
+  const coreServices = s2?.items || [];
+  const whyChoose = s3?.items || [];
+  const partners = s4?.items || [];
+  const researchServices = s5?.items || [];
+  const stats = (s8?.items || []).map((i) => ({ value: i.title, label: i.body }));
 
   useEffect(() => { dispatch(fetchPosts({})); }, [dispatch]);
 
   const blogPosts = posts.length > 0
     ? posts.slice(0, 3).map((p: Post) => ({ id: p.id, slug: p.slug, title: p.title, excerpt: p.excerpt, image: p.featuredMedia?.url || "", date: p.publishedAt || p.createdAt }))
-    : DEFAULT_BLOG;
+    : [];
+
+  const slides = s1?.images?.length ? s1.images : (s1?.image ? [s1.image] : []);
 
   const [slide, setSlide] = useState(0);
-  const next = useCallback(() => setSlide((s) => (s + 1) % HERO_SLIDES.length), []);
-  useEffect(() => { const t = setInterval(next, 5000); return () => clearInterval(t); }, [next]);
+  const next = useCallback(() => setSlide((s) => (slides.length ? (s + 1) % slides.length : 0)), [slides.length]);
+  useEffect(() => {
+    if (slides.length < 2) return;
+    const t = setInterval(next, 5000);
+    return () => clearInterval(t);
+  }, [next, slides.length]);
+
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterSending, setNewsletterSending] = useState(false);
+  const [newsletterSent, setNewsletterSent] = useState(false);
+  const [newsletterError, setNewsletterError] = useState("");
+
+  const submitNewsletter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+    setNewsletterSending(true);
+    setNewsletterError("");
+    try {
+      await SubscriberService.subscribe({
+        name: newsletterEmail.split("@")[0] || newsletterEmail,
+        email: newsletterEmail,
+        type: "newsletter",
+      });
+      setNewsletterEmail("");
+      setNewsletterSent(true);
+      setTimeout(() => setNewsletterSent(false), 4000);
+    } catch {
+      setNewsletterError(s9?.body || "");
+    } finally {
+      setNewsletterSending(false);
+    }
+  };
 
   const formatDate = (d: string) => {
     try { return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }); }
@@ -105,47 +93,74 @@ export default function HomePage() {
 
       {/* HERO CAROUSEL — full bleed, text centered */}
       <section style={{ position: "relative", width: "100%", minHeight: "clamp(500px, 64.6vw, 1117px)", overflow: "hidden", marginTop: -92 }}>
-        {HERO_SLIDES.map((src, i) => (
-          <div key={i} style={{ position: "absolute", inset: 0, transition: "opacity 0.8s ease", opacity: i === slide ? 1 : 0 }}>
-            <Image src={src} alt={`Slide ${i + 1}`} fill style={{ objectFit: "cover", objectPosition: "center" }} priority={i === 0} />
-            <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
-          </div>
-        ))}
+        {slides.length > 0 ? (
+          slides.map((src, i) => (
+            <div key={i} style={{ position: "absolute", inset: 0, transition: "opacity 0.8s ease", opacity: i === slide ? 1 : 0 }}>
+              <Image src={src} alt={s1?.title || ""} fill style={{ objectFit: "cover", objectPosition: "center" }} priority={i === 0} />
+              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
+            </div>
+          ))
+        ) : (
+          <div style={{ position: "absolute", inset: 0, background: NAVY }} />
+        )}
 
         {/* Content — centered */}
         <div style={{ position: "relative", zIndex: 2, width: "100%", minHeight: "clamp(500px, 64.6vw, 1117px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingTop: 108, textAlign: "center", padding: "108px 20px 60px" }}>
           <h1 style={{ color: WHITE, fontWeight: 800, lineHeight: 1.1, marginBottom: 20, fontSize: "clamp(28px, 4.5vw, 64px)", maxWidth: 700 }}>
-            {s1?.title || "From Learning to Earning"}
+            {s1?.title}
           </h1>
           <p style={{ color: "rgba(255,255,255,0.88)", fontSize: "clamp(13px, 1.2vw, 16px)", lineHeight: 1.75, marginBottom: 36, maxWidth: 560 }}>
-            {s1?.body || "Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services that empower individuals, strengthen MSMEs, and support sustainable development goals."}
+            {s1?.body}
           </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
-            <Link href="/services" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: NAVY, color: WHITE, borderRadius: 100, fontWeight: 600, textDecoration: "none", fontSize: "clamp(13px, 1vw, 15px)", padding: "14px 32px" }}>
-              {s1?.buttons?.[0]?.title || "Explore Our Services"} <span>&#8594;</span>
-            </Link>
-            <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: WHITE, color: NAVY, borderRadius: 100, fontWeight: 600, textDecoration: "none", fontSize: "clamp(13px, 1vw, 15px)", padding: "14px 32px" }}>
-              {s1?.buttons?.[1]?.title || "Contact Us"}
-            </Link>
-          </div>
+          {s1?.buttons?.length ? (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
+              {s1.buttons.map((b, i) => (
+                <Link
+                  key={i}
+                  href={b.href}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                    background: i === 0 ? NAVY : WHITE,
+                    color: i === 0 ? WHITE : NAVY,
+                    borderRadius: 100,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    fontSize: "clamp(13px, 1vw, 15px)",
+                    padding: "14px 32px",
+                  }}
+                >
+                  {b.title} {i === 0 ? <span>&#8594;</span> : null}
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         {/* Dots only — no arrows */}
-        <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", zIndex: 3, display: "flex", gap: 8 }}>
-          {HERO_SLIDES.map((_, i) => (
-            <button key={i} onClick={() => setSlide(i)} aria-label={`Slide ${i + 1}`}
-              style={{ width: i === slide ? 28 : 10, height: 10, borderRadius: 100, background: i === slide ? WHITE : "rgba(255,255,255,0.45)", border: "none", cursor: "pointer", transition: "all 0.3s", padding: 0 }} />
-          ))}
-        </div>
+        {slides.length > 1 ? (
+          <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", zIndex: 3, display: "flex", gap: 8 }}>
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setSlide(i)}
+                aria-label={`Slide ${i + 1}`}
+                style={{ width: i === slide ? 28 : 10, height: 10, borderRadius: 100, background: i === slide ? WHITE : "rgba(255,255,255,0.45)", border: "none", cursor: "pointer", transition: "all 0.3s", padding: 0 }}
+              />
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {/* OUR CORE SERVICES */}
       <section style={{ background: WHITE, padding: "60px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <p style={{ color: ORANGE, fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 8 }}>{s2?.overline || "What We Offer"}</p>
-            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s2?.title || "Our Core Services"}</h2>
-            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s2?.body || "Comprehensive programs designed to equip individuals with the skills and knowledge needed to thrive."}</p>
+            <p style={{ color: ORANGE, fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 8 }}>{s2?.overline}</p>
+            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s2?.title}</h2>
+            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s2?.body}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 17 }}>
             {coreServices.map((item: Item, i: number) => (
@@ -165,38 +180,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* STATS ROW — after core services */}
-      <section style={{ background: WHITE, padding: "0 20px 60px", boxSizing: "border-box" }} className="md:px-[120px]">
-        <div style={{ maxWidth: 1728, margin: "0 auto" }}>
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 16 }}>
-            {STATS.map((stat, i) => (
-              <div key={i} style={{ border: "1px solid rgba(229,136,37,0.35)", borderRadius: 16, padding: "20px 24px", display: "flex", alignItems: "center", gap: 16 }}>
-                <div style={{ width: 44, height: 44, borderRadius: 10, background: PEACH, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={ORANGE} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
+      {stats.length ? (
+        <section style={{ background: WHITE, padding: "0 20px 60px", boxSizing: "border-box" }} className="md:px-[120px]">
+          <div style={{ maxWidth: 1728, margin: "0 auto" }}>
+            <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 16 }}>
+              {stats.map((stat, i) => (
+                <div key={i} style={{ border: "1px solid rgba(229,136,37,0.35)", borderRadius: 16, padding: "20px 24px", display: "flex", alignItems: "center", gap: 16 }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 10, background: PEACH, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={ORANGE} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.1 }}>{stat.value}</div>
+                    <div style={{ color: "#777", fontSize: 12, marginTop: 2 }}>{stat.label}</div>
+                  </div>
                 </div>
-                <div>
-                  <div style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.1 }}>{stat.value}</div>
-                  <div style={{ color: "#777", fontSize: 12, marginTop: 2 }}>{stat.label}</div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* WHY CHOOSE SKILL COLLEGE — #01244A bg, cards #D8EAFE */}
       <section style={{ background: NAVY, width: "100%", padding: "120px 20px 111px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s3?.title || "Why Choose Skill College"}</h2>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s3?.body || "We combine academic excellence with practical industry experience to deliver transformative education."}</p>
+            <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s3?.title}</h2>
+            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s3?.body}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 32, alignItems: "center" }}>
             {/* Left image */}
             <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "1/1", maxHeight: 500, width: "100%" }}>
-              <Image src="/images/why-choose-us/skill-college-why-choose-us-img.png" alt="Why Choose Skill College" fill style={{ objectFit: "cover" }} />
+              {s3?.image ? <Image src={s3.image} alt={s3.title || ""} fill style={{ objectFit: "cover" }} /> : null}
             </div>
             {/* Right cards — 728x174, #D8EAFE, border-radius 24, padding 32, gap 32 */}
             <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -215,8 +231,8 @@ export default function HomePage() {
       <section style={{ background: WHITE, padding: "80px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>{s4?.title || "Our Partners"}</h2>
-            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto", lineHeight: 1.75 }}>{s4?.body || "We collaborate with diverse organizations to amplify our impact."}</p>
+            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>{s4?.title}</h2>
+            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto", lineHeight: 1.75 }}>{s4?.body}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 20 }}>
             {partners.map((p: Item, i: number) => (
@@ -241,8 +257,8 @@ export default function HomePage() {
         <div style={{ maxWidth: 1728, margin: "0 auto" }}>
           {/* Centered heading */}
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s5?.title || "Our Research Services"}</h2>
-            <p style={{ color: "rgba(255,255,255,0.88)", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s5?.body || "Data-driven insights and rigorous evaluations to measure impact and inform strategic decisions."}</p>
+            <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s5?.title}</h2>
+            <p style={{ color: "rgba(255,255,255,0.88)", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s5?.body}</p>
           </div>
           {/* 2-col: cards left, image right */}
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 32, alignItems: "center" }}>
@@ -255,7 +271,7 @@ export default function HomePage() {
               ))}
             </div>
             <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "4/3", width: "100%" }}>
-              <Image src="/images/our-research-services/skill-college-our-research-services-img.png" alt="Research Services" fill style={{ objectFit: "cover" }} />
+              {s5?.image ? <Image src={s5.image} alt={s5.title || ""} fill style={{ objectFit: "cover" }} /> : null}
             </div>
           </div>
         </div>
@@ -265,8 +281,8 @@ export default function HomePage() {
       <section style={{ background: WHITE, padding: "80px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>{s6?.title || "Blog and Insights"}</h2>
-            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto", lineHeight: 1.75 }}>{s6?.body || "Stay updated with the latest news, stories, and insights from Skill College."}</p>
+            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>{s6?.title}</h2>
+            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto", lineHeight: 1.75 }}>{s6?.body}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
             {blogPosts.map((post, i: number) => (
@@ -289,23 +305,35 @@ export default function HomePage() {
       {/* READY TO TRANSFORM — #FEF5EC */}
       <section style={{ background: PEACH, padding: "80px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 12 }}>{s7?.title || "Ready to Transform Your Future?"}</h2>
-          <p style={{ color: "#555", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 480, margin: "0 auto 28px", lineHeight: 1.75 }}>{s7?.body || "Join thousands of graduates who have transformed their lives through our programs."}</p>
-          <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: NAVY, color: WHITE, borderRadius: 100, fontWeight: 700, textDecoration: "none", fontSize: "clamp(13px, 1vw, 15px)", padding: "15px 40px" }}>
-            {s7?.button?.title || "Contact Us Today"}
-          </Link>
+          <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 12 }}>{s7?.title}</h2>
+          <p style={{ color: "#555", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 480, margin: "0 auto 28px", lineHeight: 1.75 }}>{s7?.body}</p>
+          {s7?.button ? (
+            <Link href={s7.button.href} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: NAVY, color: WHITE, borderRadius: 100, fontWeight: 700, textDecoration: "none", fontSize: "clamp(13px, 1vw, 15px)", padding: "15px 40px" }}>
+              {s7.button.title}
+            </Link>
+          ) : null}
         </div>
       </section>
 
       {/* NEWSLETTER — #01244A */}
       <section style={{ background: NAVY, width: "100%", padding: "80px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>Subscribe to Our Newsletter</h2>
-          <p style={{ color: "rgba(255,255,255,0.62)", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto 28px", lineHeight: 1.75 }}>Get the latest updates on programs, events, and opportunities delivered to your inbox.</p>
-          <div className="flex flex-col md:flex-row justify-center" style={{ gap: 12, maxWidth: 480, margin: "0 auto" }}>
-            <input type="email" placeholder="Enter your email address" style={{ flex: 1, padding: "14px 22px", borderRadius: 100, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.08)", color: WHITE, fontSize: 14, outline: "none" }} />
-            <button style={{ background: ORANGE, color: WHITE, border: "none", borderRadius: 100, padding: "14px 32px", fontSize: 14, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }}>Subscribe</button>
-          </div>
+          <h2 style={{ color: WHITE, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>{s9?.title}</h2>
+          <p style={{ color: "rgba(255,255,255,0.62)", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto 28px", lineHeight: 1.75 }}>{s9?.subtitle || s9?.body}</p>
+          <form onSubmit={submitNewsletter} className="flex flex-col md:flex-row justify-center" style={{ gap: 12, maxWidth: 480, margin: "0 auto" }}>
+            <input
+              type="email"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              placeholder={s9?.overline || ""}
+              style={{ flex: 1, padding: "14px 22px", borderRadius: 100, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.08)", color: WHITE, fontSize: 14, outline: "none" }}
+            />
+            <button type="submit" disabled={newsletterSending} style={{ background: ORANGE, color: WHITE, border: "none", borderRadius: 100, padding: "14px 32px", fontSize: 14, fontWeight: 700, cursor: newsletterSending ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: newsletterSending ? 0.7 : 1 }}>
+              {s9?.button?.title}
+            </button>
+          </form>
+          {newsletterError ? <p style={{ marginTop: 12, color: "rgba(255,255,255,0.8)", fontSize: 12 }}>{newsletterError}</p> : null}
+          {newsletterSent ? <p style={{ marginTop: 12, color: "rgba(255,255,255,0.8)", fontSize: 12 }}>{s9?.body}</p> : null}
         </div>
       </section>
 

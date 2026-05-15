@@ -119,6 +119,8 @@
       }
     },
     "section8": {
+      "title": "Our Impact",
+      "body": "Making a difference in communities across Nigeria.",
       "items": [
         {
           "title": "500+",
@@ -141,11 +143,11 @@
     "section9": {
       "title": "Subscribe to Our Newsletter",
       "subtitle": "Get the latest updates on programs, events, and opportunities delivered to your inbox.",
-      "body": "Thank you for subscribing!",
+      "body": "Stay connected with Skill College for the latest updates.",
       "overline": "Enter your email address",
       "button": {
         "title": "Subscribe",
-        "href": "#"
+        "href": "/newsletter"
       }
     }
   },

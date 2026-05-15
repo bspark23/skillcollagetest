@@ -1,0 +1,376 @@
+{
+  "siteContent": {
+    "home": {
+      "section1": {
+        "title": "From Learning to Earning",
+        "body": "Bridging the gap between education, business, and development. We provide market-driven training, research, and consulting services that empower individuals, strengthen MSMEs, and support sustainable development goals.",
+        "images": [
+          "/images/skill-college-hero-slider1.png",
+          "/images/skill-college-hero-slider2.png",
+          "/images/skill-college-hero-slider3.png",
+          "/images/skill-college-hero-slider4.png",
+          "/images/skill-college-hero-slider5.png"
+        ],
+        "buttons": [
+          {
+            "title": "Explore Our Services",
+            "href": "/services"
+          },
+          {
+            "title": "Contact Us",
+            "href": "/contact"
+          }
+        ]
+      },
+      "section2": {
+        "overline": "What We Offer",
+        "title": "Our Core Services",
+        "body": "Comprehensive programs designed to equip individuals with the skills and knowledge needed to thrive.",
+        "items": [
+          {
+            "title": "Skills Training Programs",
+            "body": "Hands-on vocational and technical training programs designed to equip youth with market-ready skills."
+          },
+          {
+            "title": "Entrepreneurship Development",
+            "body": "Comprehensive business development programs that transform ideas into sustainable enterprises."
+          },
+          {
+            "title": "Research and Innovation",
+            "body": "Cutting-edge research services supporting evidence-based decision making and innovation."
+          },
+          {
+            "title": "Mentorship and Coaching",
+            "body": "One-on-one mentorship connecting learners with experienced industry professionals."
+          },
+          {
+            "title": "Certification Programs",
+            "body": "Internationally recognized certification courses that boost employability and career growth."
+          },
+          {
+            "title": "Community Development",
+            "body": "Grassroots programs empowering communities through education and enterprise development."
+          }
+        ]
+      },
+      "section3": {
+        "title": "Why Choose Skill College",
+        "body": "We combine academic excellence with practical industry experience to deliver transformative education.",
+        "image": "/images/why-choose-us/skill-college-why-choose-us-img.png",
+        "items": [
+          {
+            "title": "Business-Ready Solutions",
+            "body": "Our programs are designed in partnership with industry leaders to ensure graduates are job and business ready from day one."
+          },
+          {
+            "title": "Experienced Faculty",
+            "body": "Learn from seasoned professionals and academics with decades of real-world experience across multiple sectors."
+          },
+          {
+            "title": "Cutting-Edge Curriculum",
+            "body": "Our curriculum is regularly updated to reflect current market demands, emerging technologies, and global best practices."
+          }
+        ]
+      },
+      "section4": {
+        "title": "Our Partners",
+        "body": "We collaborate with diverse organizations to amplify our impact.",
+        "items": [
+          {
+            "title": "UN Agencies & International Organizations",
+            "body": "Collaboration with IOM, UNDP, UNHCR, and other UN agencies on development programs."
+          },
+          {
+            "title": "NGOs & Government Agencies",
+            "body": "Strategic partnerships with local and international NGOs for project implementation and government bodies on capacity building and development initiatives."
+          },
+          {
+            "title": "Private Sector & Corporates",
+            "body": "Partnership with businesses for skills development and economic empowerment programs."
+          }
+        ]
+      },
+      "section5": {
+        "title": "Our Research Services",
+        "body": "Data-driven insights and rigorous evaluations to measure impact and inform strategic decisions.",
+        "image": "/images/our-research-services/skill-college-our-research-services-img.png",
+        "items": [
+          {
+            "title": "Rigorous & Reliable",
+            "body": "International standards and proven methodologies."
+          },
+          {
+            "title": "Context-Specific",
+            "body": "Tailored approaches for local realities."
+          },
+          {
+            "title": "Actionable Insights",
+            "body": "Practical recommendations you can implement."
+          },
+          {
+            "title": "Statistical analysis and reporting",
+            "body": "Remote and field-based data collection."
+          }
+        ]
+      },
+      "section6": {
+        "title": "Blog and Insights",
+        "body": "Stay updated with the latest news, stories, and insights from Skill College."
+      },
+      "section7": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join thousands of graduates who have transformed their lives through our programs.",
+        "button": {
+          "title": "Contact Us Today",
+          "href": "/contact"
+        }
+      },
+      "section8": {
+        "items": [
+          {
+            "title": "500+",
+            "body": "Trained Individuals"
+          },
+          {
+            "title": "50+",
+            "body": "Partner Organizations"
+          },
+          {
+            "title": "100+",
+            "body": "Completed Projects"
+          },
+          {
+            "title": "5+",
+            "body": "Years Experience"
+          }
+        ]
+      }
+    },
+    "about": {
+      "section1": {
+        "title": "About Skills College",
+        "body": "Comprehensive research and evaluation services tailored to your needs.",
+        "image": "/images/about-skill-college/skill-college-about-skill-college-img1.png"
+      },
+      "section2": {
+        "title": "Who We Are",
+        "body": "Comprehensive research and evaluation services tailored to your needs.",
+        "image": "/images/who-we-are/skill-college-who-we-are-img.png",
+        "items": [
+          {
+            "title": "Evidence-Based Solutions",
+            "body": "We design and implement programs grounded in research and data, ensuring our interventions create measurable, lasting impact."
+          },
+          {
+            "title": "Our Vision",
+            "body": "To be a leading catalyst for skills development and enterprise growth across Africa, empowering individuals to achieve economic independence."
+          },
+          {
+            "title": "Our Mission",
+            "body": "To bridge the gap between education and employment by delivering market-driven training, research, and consulting services that strengthen MSMEs."
+          }
+        ]
+      },
+      "section3": {
+        "title": "Our Value Proposition",
+        "body": "We combine local expertise with global best practices to deliver measurable impact.",
+        "image": "/images/our-value-proposition/skill-college-our-value-proposition-img.png"
+      },
+      "section5": {
+        "title": "Our Core Values",
+        "body": "The principles that guide everything we do.",
+        "items": [
+          {
+            "title": "Excellence",
+            "body": "We hold ourselves to the highest standards in everything we deliver."
+          },
+          {
+            "title": "Empowerment",
+            "body": "We equip people with tools and confidence to succeed on their own terms."
+          },
+          {
+            "title": "Impact",
+            "body": "We measure our success by the real change we create in people's lives."
+          },
+          {
+            "title": "Innovation",
+            "body": "We embrace creative solutions to address complex development challenges."
+          }
+        ]
+      },
+      "section9": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join us and be part of a growing community of skilled professionals.",
+        "button": {
+          "title": "Get In Touch With Us",
+          "href": "/contact"
+        }
+      }
+    },
+    "services": {
+      "section1": {
+        "title": "Our Services",
+        "body": "Comprehensive solutions designed to empower individuals, strengthen organizations, and drive sustainable development.",
+        "image": "/images/our-services/skill-college-our-services-img.png"
+      },
+      "section2": {
+        "title": "Services We Offer",
+        "body": "Comprehensive solutions tailored to empower individuals, businesses, and organizations.",
+        "image": "/images/services-we-offer/skill-college-services-we-offer-img.png",
+        "items": [
+          {
+            "title": "Skills and Entrepreneurship Education",
+            "body": "Empowering individuals to start and grow businesses through market-driven skills and knowledge.",
+            "thumbnail": "Vocational skills training in multiple disciplines|Business development and MSME support|Workforce readiness and career pathways",
+            "video": "Talk to us today - we can deliver these services in your location or to your team partners."
+          },
+          {
+            "title": "Research and Evaluations",
+            "body": "Data-driven insights and rigorous evaluations to measure impact and inform strategic decisions.",
+            "thumbnail": "Baseline, midline, and endline surveys|Monitoring and evaluation plans|Policy and program assessments",
+            "video": "Talk to us today - we can deliver these services in your location or to your team partners."
+          },
+          {
+            "title": "Business Development and Management",
+            "body": "Strategic support to help organizations grow, manage operations, and achieve sustainable results.",
+            "thumbnail": "Organizational development and strategy|Project management and reporting|Capacity building for NGOs and SMEs",
+            "video": "Talk to us today - we can deliver these services in your location or to your team partners."
+          }
+        ]
+      },
+      "section8": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join hundreds of individuals and organizations who have benefited from our programs and services.",
+        "button": {
+          "title": "Get Started Today",
+          "href": "/contact"
+        }
+      }
+    },
+    "programs": {
+      "section1": {
+        "title": "Skills & Entrepreneurship Programs",
+        "body": "Demand-driven training programs designed to equip you with practical skills for employment and entrepreneurship.",
+        "image": "/images/skills-&-entrepeneurship-programs/skill-college-skills-&-entrepeneurship-programs-slider.png"
+      },
+      "section2": {
+        "title": "Transform Your Future Through Learning",
+        "body": "Our skills and entrepreneurship programs are designed to bridge the gap between education and employment. We provide market-driven training that empowers individuals to start businesses, secure jobs, and drive economic growth in their communities.",
+        "image": "/images/skills-&-entrepeneurship-programs/skill-college-transform-your-future-through-learning-img.png",
+        "items": [
+          {
+            "title": "Tech Skills Development",
+            "body": "Practical training in digital skills including web development, digital marketing, and IT. Duration: 3-6 months",
+            "subtitle": "Level: Beginner to Advanced"
+          },
+          {
+            "title": "Entrepreneurship & MSME Support",
+            "body": "Business development training and mentorship to help entrepreneurs start and grow businesses. Duration: 2-3 months",
+            "subtitle": "Level: Beginner to Intermediate"
+          },
+          {
+            "title": "Vocational Training",
+            "body": "Hands-on training in trades including tailoring, catering, carpentry, and other marketable skills. Duration: 3-6 months",
+            "subtitle": "Level: All Levels"
+          },
+          {
+            "title": "Income Generating Activities (IGAs)",
+            "body": "Short-term programs equipping participants with quick income-generating skills for immediate livelihood support. Duration: 2-6 weeks",
+            "subtitle": "Level: All Levels"
+          }
+        ]
+      },
+      "section8": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join hundreds of individuals and organizations who have benefited from our programs and services.",
+        "button": {
+          "title": "Get Started Today",
+          "href": "/contact"
+        }
+      }
+    },
+    "contact": {
+      "section1": {
+        "title": "Contact Us",
+        "body": "Get in touch with us to learn more about our programs or discuss partnership opportunities.",
+        "image": "/images/contact-us/skill-college-contact-us-slider.png"
+      },
+      "section8": {
+        "title": "Ready to Transform Your Future?",
+        "body": "Join hundreds of individuals and organizations who have benefited from our programs and services.",
+        "button": {
+          "title": "Get Started Today",
+          "href": "/contact"
+        }
+      }
+    }
+  },
+  "systemSettings": {
+    "siteName": "Skill College",
+    "siteLogo": "/images/skill-college-logo.png",
+    "siteIcon": "/images/skill-college-logo.png",
+    "siteUrl": "https://skillcollegeandenterpriseltd.com",
+    "siteSlogan": "Bridging the gap between education and employment",
+    "siteGraphImage": "/images/skill-college-logo.png",
+    "siteKeywords": ["skills", "education", "employment", "enterprise", "africa"],
+    "siteDescription": "We provide market-driven training, research, and consulting services that empower individuals.",
+    "siteAuthor": "Skill College",
+    "siteLocale": "en_US",
+    "siteType": "website",
+    "ogTitle": "Skill College",
+    "ogDescription": "Bridging the gap between education and employment",
+    "ogImage": "/images/skill-college-logo.png",
+    "ogImageAlt": "Skill College Logo",
+    "twitterCard": "summary_large_image",
+    "twitterSite": "@skillcollege",
+    "twitterCreator": "@skillcollege",
+    "twitterTitle": "Skill College",
+    "twitterDescription": "Bridging the gap between education and employment",
+    "twitterImage": "/images/skill-college-logo.png",
+    "maintenanceMode": false,
+    "headerLinks": [
+      { "label": "Home", "href": "/", "isButton": false },
+      { "label": "About Us", "href": "/about", "isButton": false },
+      { "label": "Programs", "href": "/programs", "isButton": false },
+      { "label": "Services", "href": "/services", "isButton": false },
+      { "label": "Blog", "href": "/blog", "isButton": false },
+      { "label": "Contact Us", "href": "/contact", "isButton": true }
+    ],
+    "footerLinks": [
+      {
+        "section": "Company",
+        "links": [
+          { "label": "About Us", "href": "/about" },
+          { "label": "Programs", "href": "/programs" },
+          { "label": "Services", "href": "/services" },
+          { "label": "Blog", "href": "/blog" }
+        ]
+      },
+      {
+        "section": "Support",
+        "links": [
+          { "label": "Contact Us", "href": "/contact" },
+          { "label": "Privacy Policy", "href": "/privacy-policy" },
+          { "label": "Terms of Service", "href": "/terms-of-service" }
+        ]
+      }
+    ],
+    "socialLinks": [
+      { "label": "Facebook", "href": "#", "icon": "facebook", "isButton": false },
+      { "label": "Twitter", "href": "#", "icon": "twitter", "isButton": false },
+      { "label": "LinkedIn", "href": "#", "icon": "linkedin", "isButton": false },
+      { "label": "Instagram", "href": "#", "icon": "instagram", "isButton": false }
+    ],
+    "contact": {
+      "email": "skillcollegealtd@gmail.com",
+      "phones": ["+2347030749599"],
+      "whatsappPhone": "+2347030749599",
+      "addresses": [
+        {
+          "address": "No 12 Aisha Plaza, Off Maishindam Cambua Road, Maiduguri, Borno State, Nigeria"
+        }
+      ],
+      "map": ""
+    }
+  }
+}
