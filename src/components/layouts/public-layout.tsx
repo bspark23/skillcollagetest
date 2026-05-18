@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
 import { useContent } from "@/hooks/use-content";
@@ -50,7 +49,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 48 }}>
             <Link href="/" onClick={() => setMobileOpen(false)}>
               {logoSrc ? (
-                <Image src={logoSrc} alt={systemSettings?.siteName || ""} width={120} height={36} style={{ objectFit: "contain" }} />
+                <img src={logoSrc} alt={systemSettings?.siteName || ""} style={{ height: 36, width: "auto", objectFit: "contain" }} />
               ) : (
                 <span style={{ color: NAVY, fontSize: 16, fontWeight: 800 }}>
                   {systemSettings?.siteName}
@@ -98,7 +97,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         }}>
           <Link href="/" style={{ flexShrink: 0, textDecoration: "none", display: "flex", alignItems: "center" }}>
             {logoSrc ? (
-              <Image src={logoSrc} alt={systemSettings?.siteName || ""} width={110} height={34} style={{ objectFit: "contain" }} priority />
+              <img src={logoSrc} alt={systemSettings?.siteName || ""} style={{ height: 34, width: "auto", objectFit: "contain" }} />
             ) : (
               <span style={{ color: NAVY, fontSize: 16, fontWeight: 800 }}>
                 {systemSettings?.siteName}
@@ -141,7 +140,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             <div>
               <div style={{ marginBottom: 16 }}>
                 {logoSrc ? (
-                  <Image src={logoSrc} alt={systemSettings?.siteName || ""} width={120} height={36} style={{ objectFit: "contain" }} />
+                  <img src={logoSrc} alt={systemSettings?.siteName || ""} style={{ height: 36, width: "auto", objectFit: "contain" }} />
                 ) : (
                   <span style={{ color: NAVY, fontSize: 16, fontWeight: 800 }}>
                     {systemSettings?.siteName}

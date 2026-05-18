@@ -183,6 +183,12 @@ export default function HomePage() {
       {stats.length ? (
         <section style={{ background: WHITE, padding: "0 20px 60px", boxSizing: "border-box" }} className="md:px-[120px]">
           <div style={{ maxWidth: 1728, margin: "0 auto" }}>
+            {(s8?.title || s8?.body) && (
+              <div style={{ textAlign: "center", marginBottom: 40 }}>
+                {s8.title && <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 10 }}>{s8.title}</h2>}
+                {s8.body && <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s8.body}</p>}
+              </div>
+            )}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 16 }}>
               {stats.map((stat, i) => (
                 <div key={i} style={{ border: "1px solid rgba(229,136,37,0.35)", borderRadius: 16, padding: "20px 24px", display: "flex", alignItems: "center", gap: 16 }}>
@@ -227,30 +233,100 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* OUR PARTNERS — white bg, cards #FBEADB, no heading above */}
-      <section style={{ background: WHITE, padding: "80px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
-        <div style={{ maxWidth: 1728, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 8 }}>{s4?.title}</h2>
-            <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 440, margin: "0 auto", lineHeight: 1.75 }}>{s4?.body}</p>
+      {/* OUR PARTNERS — white bg, infinite scrolling marquee */}
+      {partners.length > 0 ? (
+        <section style={{ background: WHITE, padding: "80px 0", boxSizing: "border-box", overflow: "hidden" }}>
+          <div style={{ maxWidth: 1728, margin: "0 auto", padding: "0 20px" }} className="md:px-[120px]">
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 32px)", marginBottom: 8 }}>{s4?.title}</h2>
+              <p style={{ color: "#666", fontSize: "clamp(13px, 1.1vw, 14px)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>{s4?.body}</p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 20 }}>
-            {partners.map((p: Item, i: number) => (
-              <div key={i} style={{ background: PARTNER_CARD, borderRadius: 20, padding: "32px 28px", display: "flex", flexDirection: "column", gap: 16 }}>
-                <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(229,136,37,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 style={{ color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10, lineHeight: 1.3 }}>{p.title}</h3>
-                  <p style={{ color: "#555", fontSize: 13, lineHeight: 1.65, margin: 0 }}>{p.body}</p>
-                </div>
-              </div>
-            ))}
+          <div className="marquee-container">
+            <div className="marquee-content">
+              {[...partners, ...partners].map((p: Item, i: number) => {
+                const cleanText = (p.body || "").replace(/^service:\s*/i, "");
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      background: WHITE,
+                      borderRadius: 24,
+                      border: "1px solid rgba(229,136,37,0.18)",
+                      padding: "32px 28px",
+                      width: 380,
+                      flexShrink: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      boxShadow: "0 4px 16px rgba(1,36,74,0.02)",
+                      boxSizing: "border-box"
+                    }}
+                  >
+                    <div style={{ height: 52, display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: 16 }}>
+                      {(() => {
+                        const title = p.title || "";
+                        const lowerTitle = title.toLowerCase();
+                        let logoSrc = p.image || "";
+                        
+                        if (!logoSrc) {
+                          if (lowerTitle.includes("swiss tropical") || lowerTitle.includes("public health")) {
+                            logoSrc = "/images/images-update/_Swiss Tropical and Public Health Institute.png";
+                          } else if (lowerTitle.includes("human rights") || lowerTitle.includes("un human")) {
+                            logoSrc = "/images/images-update/_UN Human Rights.png";
+                          } else if (lowerTitle.includes("cedar")) {
+                            logoSrc = "/images/images-update/CEDAR Foundation for Disability.png";
+                          } else if (lowerTitle.includes("peace ambassadors") || lowerTitle.includes("pache")) {
+                            logoSrc = "/images/images-update/Peace Ambassadors Centre for Humanitarian Aids and Empowerment (PACHE).png";
+                          } else if (lowerTitle.includes("skat")) {
+                            logoSrc = "/images/images-update/SKAT Foundation.png";
+                          } else if (lowerTitle.includes("tearfund")) {
+                            logoSrc = "/images/images-update/TEARFUND.png";
+                          } else if (lowerTitle.includes("wfp") || lowerTitle.includes("world food")) {
+                            logoSrc = "/images/images-update/UN WFP.png";
+                          } else if (lowerTitle.includes("protection without borders") || lowerTitle.includes("powib")) {
+                            logoSrc = "/images/images-update/Protection without Borders (POWIB).png";
+                          } else if (lowerTitle.includes("un agencies")) {
+                            logoSrc = "/images/images-update/_UN Human Rights.png";
+                          } else if (lowerTitle.includes("ngos & government")) {
+                            logoSrc = "/images/images-update/Peace Ambassadors Centre for Humanitarian Aids and Empowerment (PACHE).png";
+                          } else if (lowerTitle.includes("private sector")) {
+                            logoSrc = "/images/images-update/SKAT Foundation.png";
+                          }
+                        }
+
+                        if (logoSrc) {
+                          return (
+                            <img
+                              src={logoSrc}
+                              alt={title}
+                              style={{ objectFit: "contain", height: "100%", width: "auto", maxHeight: 52 }}
+                            />
+                          );
+                        }
+
+                        return (
+                          <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(229,136,37,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={ORANGE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                    <div>
+                      <h3 style={{ color: NAVY, fontWeight: 700, fontSize: 16, marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h3>
+                      <p style={{ color: "#444", fontSize: 13, lineHeight: 1.65, margin: 0, whiteSpace: "normal" }}>
+                        <strong style={{ color: NAVY }}>Service: </strong>
+                        {cleanText}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* OUR RESEARCH SERVICES — #E58825 bg, centered heading, cards #F6D7B6 left, image right */}
       <section style={{ background: ORANGE, width: "100%", padding: "80px 20px 100px", boxSizing: "border-box" }} className="md:px-[120px]">
@@ -286,7 +362,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 24 }}>
             {blogPosts.map((post, i: number) => (
-              <Link key={i} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(1,36,74,0.1)", background: WHITE }}>
+              <Link key={i} href={`/blog/${post.slug}`} className="blog-card" style={{ textDecoration: "none", display: "flex", flexDirection: "column", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(1,36,74,0.1)", background: WHITE }}>
                 <div style={{ position: "relative", height: 190, background: "#e8e8e8", flexShrink: 0 }}>
                   {post.image && <Image src={post.image} alt={post.title} fill style={{ objectFit: "cover" }} />}
                 </div>

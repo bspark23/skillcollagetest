@@ -54,7 +54,7 @@ export default function BlogPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 28 }}>
               {displayPosts.map((post, i) => (
-                <Link key={i} href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "flex", flexDirection: "column", borderRadius: 16, overflow: "hidden", background: WHITE, border: "1px solid rgba(1,36,74,0.08)", transition: "box-shadow 0.2s" }}>
+                <Link key={i} href={`/blog/${post.slug}`} className="blog-card" style={{ textDecoration: "none", display: "flex", flexDirection: "column", borderRadius: 16, overflow: "hidden", background: WHITE, border: "1px solid rgba(1,36,74,0.08)", transition: "box-shadow 0.2s" }}>
                   <div style={{ position: "relative", height: 200, background: "#e8e8e8", flexShrink: 0 }}>
                     {post.image && <Image src={post.image} alt={post.title} fill style={{ objectFit: "cover" }} />}
                   </div>

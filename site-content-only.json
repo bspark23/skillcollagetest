@@ -49,7 +49,7 @@
     "section3": {
       "title": "Why Choose Skill College",
       "body": "We combine academic excellence with practical industry experience to deliver transformative education.",
-      "image": "/images/why-choose-us/skill-college-why-choose-us-img.png",
+      "image": "/images/images-update/skill-college-why-choose-us-img.png",
       "items": [
         {
           "title": "Business-Ready Solutions",
@@ -70,16 +70,44 @@
       "body": "We collaborate with diverse organizations to amplify our impact.",
       "items": [
         {
-          "title": "UN Agencies & International Organizations",
-          "body": "Collaboration with IOM, UNDP, UNHCR, and other UN agencies on development programs."
+          "title": "UN Human Rights",
+          "body": "Service: Language services in Hausa, Kanuri, Fulani, Ibo, Yoruba, Pidgin English and Kanuri for the mission by the high delegation from the Office of the UN High Commissioner for Human Rights across Northwest, Northcentral, Southeast and Southwestern Nigeria.",
+          "image": "/images/images-update/_UN Human Rights.png"
         },
         {
-          "title": "NGOs & Government Agencies",
-          "body": "Strategic partnerships with local and international NGOs for project implementation and government bodies on capacity building and development initiatives."
+          "title": "UN WFP",
+          "body": "Service: Consultancy on WFP Internal Disability Inclusion Capacity assessment, Field assessment and the development of disability inclusion action plan for WFP Nigeria.",
+          "image": "/images/images-update/UN WFP.png"
         },
         {
-          "title": "Private Sector & Corporates",
-          "body": "Partnership with businesses for skills development and economic empowerment programs."
+          "title": "SKAT Foundation",
+          "body": "Service: Qualitative data collection and language services on Renew-Health project in Northwest Nigeria to ascertain the impact of the behavioral change component of the Hands4Health consortium project.",
+          "image": "/images/images-update/SKAT Foundation.png"
+        },
+        {
+          "title": "Swiss Tropical and Public Health Institute",
+          "body": "Service: Language services, data collection and quality assurance for the SDC-funded Health in Nigeria project supporting evidence-based health interventions across target states.",
+          "image": "/images/images-update/_Swiss Tropical and Public Health Institute.png"
+        },
+        {
+          "title": "CEDAR Foundation for Disability",
+          "body": "Service: Institutional capacity building, training, and development of accessibility guidelines for empowering disabled individuals across community projects.",
+          "image": "/images/images-update/CEDAR Foundation for Disability.png"
+        },
+        {
+          "title": "Peace Ambassadors Centre for Humanitarian Aids and Empowerment (PACHE)",
+          "body": "Service: Implementation of community peacebuilding initiatives, conflict resolution workshops, and humanitarian support programs in North-Eastern Nigeria.",
+          "image": "/images/images-update/Peace Ambassadors Centre for Humanitarian Aids and Empowerment (PACHE).png"
+        },
+        {
+          "title": "Protection without Borders (POWIB)",
+          "body": "Service: Advocacy, human rights monitoring, and legal assistance programs for vulnerable and displaced populations in crisis-affected areas.",
+          "image": "/images/images-update/Protection without Borders (POWIB).png"
+        },
+        {
+          "title": "TEARFUND",
+          "body": "Service: Sustainable livelihoods, water and sanitation (WASH) programs, and disaster response capacity building in remote rural communities.",
+          "image": "/images/images-update/TEARFUND.png"
         }
       ]
     },
@@ -119,6 +147,8 @@
       }
     },
     "section8": {
+      "title": "Our Impact",
+      "body": "Making a difference in communities across Nigeria.",
       "items": [
         {
           "title": "500+",
@@ -141,11 +171,11 @@
     "section9": {
       "title": "Subscribe to Our Newsletter",
       "subtitle": "Get the latest updates on programs, events, and opportunities delivered to your inbox.",
-      "body": "Thank you for subscribing!",
+      "body": "Stay connected with Skill College for the latest updates.",
       "overline": "Enter your email address",
       "button": {
         "title": "Subscribe",
-        "href": "#"
+        "href": "/newsletter"
       }
     }
   },
@@ -177,7 +207,7 @@
     "section3": {
       "title": "Our Value Proposition",
       "body": "We combine local expertise with global best practices to deliver measurable impact.",
-      "image": "/images/our-value-proposition/skill-college-our-value-proposition-img.png"
+      "image": "/images/images-update/skill-college-our-value-proposition-img.png"
     },
     "section5": {
       "title": "Our Core Values",
@@ -219,10 +249,10 @@
     "section2": {
       "title": "Services We Offer",
       "body": "Comprehensive solutions tailored to empower individuals, businesses, and organizations.",
-      "image": "/images/services-we-offer/skill-college-services-we-offer-img.png",
+      "image": "/images/images-update/skill-college-services-we-offer-img.png",
       "items": [
         {
-          "title": "Skills and Entrepreneurship Education",
+          "title": "Skills and Entrepreneurship Training",
           "body": "Empowering individuals to start and grow businesses through market-driven skills and knowledge.",
           "thumbnail": "Vocational skills training in multiple disciplines|Business development and MSME support|Workforce readiness and career pathways",
           "video": "Talk to us today - we can deliver these services in your location or to your team partners."
@@ -259,7 +289,7 @@
     "section2": {
       "title": "Transform Your Future Through Learning",
       "body": "Our skills and entrepreneurship programs are designed to bridge the gap between education and employment. We provide market-driven training that empowers individuals to start businesses, secure jobs, and drive economic growth in their communities.",
-      "image": "/images/skills-&-entrepeneurship-programs/skill-college-transform-your-future-through-learning-img.png",
+      "image": "/images/images-update/skill-college-transform-your-future-through-learning-img.png",
       "items": [
         {
           "title": "Tech Skills Development",
