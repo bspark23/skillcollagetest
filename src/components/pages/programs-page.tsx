@@ -52,13 +52,13 @@ export default function ProgramsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 48, alignItems: "flex-start" }}>
 
             {/* Left — image */}
-            <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "3/4", width: "100%", maxHeight: 560 }}>
+            <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "728/864", width: "100%", maxHeight: 560 }}>
               {s2?.image ? (
                 <Image
                   src={s2.image}
                   alt={s2.title || ""}
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                 />
               ) : null}
             </div>

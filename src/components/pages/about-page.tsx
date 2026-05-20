@@ -69,8 +69,8 @@ export default function AboutPage() {
       <section style={{ background: WHITE, padding: "80px 20px", boxSizing: "border-box" }} className="md:px-[120px]">
         <div style={{ maxWidth: 1728, margin: "0 auto" }}>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 48, alignItems: "flex-start" }}>
-            <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "4/3", width: "100%" }}>
-              {s3?.image ? <Image src={s3.image} alt={s3.title || ""} fill style={{ objectFit: "cover" }} /> : null}
+            <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "728/864", width: "100%" }}>
+              {s3?.image ? <Image src={s3.image} alt={s3.title || ""} fill style={{ objectFit: "contain" }} /> : null}
             </div>
             <div>
               <h2 style={{ color: NAVY, fontWeight: 800, fontSize: "clamp(20px, 2.5vw, 30px)", marginBottom: 12 }}>{s3?.title}</h2>

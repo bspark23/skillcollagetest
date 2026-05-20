@@ -217,8 +217,8 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 32, alignItems: "center" }}>
             {/* Left image */}
-            <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "1/1", maxHeight: 500, width: "100%" }}>
-              {s3?.image ? <Image src={s3.image} alt={s3.title || ""} fill style={{ objectFit: "cover" }} /> : null}
+            <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "728/701", maxHeight: 500, width: "100%" }}>
+              {s3?.image ? <Image src={s3.image} alt={s3.title || ""} fill style={{ objectFit: "contain" }} /> : null}
             </div>
             {/* Right cards — 728x174, #D8EAFE, border-radius 24, padding 32, gap 32 */}
             <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
